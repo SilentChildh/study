@@ -225,7 +225,7 @@ git rm --cached  :仅从暂存区删除
 
 git restore --staged <file>: 撤销 暂存区，取消add
 
-git restore <file>: 撤销 本地修改，恢复为版本库版本
+git restore <file>: 撤销 本地修改，恢复为版本库版本。亦可用于找回删除文件，即与git checkout -- <file>没啥区别
 
 
 
@@ -290,15 +290,15 @@ git checkout -- 文件名，将误删的文件恢复到最新版本。
 
 **git remote -v** 查看当前所有远程地址别名
 
+### 删除远程库
 
+可以用git remote rm <name> 命令
 
 ### 推送本地分支到远程仓库
 
 基本语法：**git push 别名 分支名**
 
 当本地库中没有版本更新时，无法推送
-
-
 
 ### 拉取远程库到本地
 
@@ -318,8 +318,3 @@ clone 会做如下操作：
 - 初始化本地仓库。
 - 创建别名
 
-
-
-### 删除远程库
-
-如果添加的时候地址写错了，或者就是想删除远程库，可以用`git remote rm <name>`命令。使用前，建议先用`git remote -v`查看远程库信息：
