@@ -22,7 +22,7 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 
 ## 类和对象内存分配
 
-<img src="C:\Users\silent_child\AppData\Roaming\Typora\typora-user-images\image-20230107140107754.png" alt="image-20230107140107754" style="zoom:200%;" />
+![](/C:/Users/silent_child/AppData/Roaming/Typora/typora-user-images/image-20230107140103135.png)
 
 ----
 
@@ -70,9 +70,7 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 
 ## 构造器
 
-![image-20230107174941346](C:\Users\silent_child\AppData\Roaming\Typora\typora-user-images\image-20230107174941346.png)![image-20230107174941966](C:\Users\silent_child\AppData\Roaming\Typora\typora-user-images\image-20230107174941966.png)
-
-
+![image-20230107174941346](C:\Users\silent_child\AppData\Roaming\Typora\typora-user-images\image-20230107174941346.png)
 
 ----
 
@@ -107,9 +105,9 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 ### 命名
 
 1. 通常只使用小写字母
-    
+   
 1. 通常每个包的名字只使用1个单词
-    
+   
 1. 域名倒置
     通常使用组织的网络域名的逆序,例如:
     如果域名为javagroup.com,包可以命名为:com.javagroup.mypackage
@@ -121,7 +119,7 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
                项目名        部门名
     
 1. . 父包和子包之间使用"."分隔          
-    
+   
     
 
 ![image-20230107221524270](C:\Users\silent_child\AppData\Roaming\Typora\typora-user-images\image-20230107221524270.png)
