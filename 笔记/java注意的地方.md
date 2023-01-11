@@ -22,7 +22,9 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 
 ## 类和对象内存分配
 
-![](/C:/Users/silent_child/AppData/Roaming/Typora/typora-user-images/image-20230107140103135.png)
+![img](C:/Users/silent_child/AppData/Roaming/Typora/typora-user-images/image-20230107140103135.png)
+
+
 
 ----
 
@@ -70,7 +72,7 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 
 ## 构造器
 
-![image-20230107174941346](C:\Users\silent_child\AppData\Roaming\Typora\typora-user-images\image-20230107174941346.png)
+![image-20230107174941346](C:/Users/silent_child/AppData/Roaming/Typora/typora-user-images/image-20230107174941346.png)
 
 ----
 
@@ -78,7 +80,7 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 
 ## this细节
 
-![image-20230107181750576](C:\Users\silent_child\AppData\Roaming\Typora\typora-user-images\image-20230107181750576.png)
+![image-20230107181750576](C:/Users/silent_child/AppData/Roaming/Typora/typora-user-images/image-20230107181750576.png)
 
 
 
@@ -100,7 +102,7 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 
 如：
 
-![image-20230107221635060](C:\Users\silent_child\AppData\Roaming\Typora\typora-user-images\image-20230107221635060.png)
+![image-20230107221635060](C:/Users/silent_child/AppData/Roaming/Typora/typora-user-images/image-20230107221635060.png)
 
 ### 命名
 
@@ -122,7 +124,7 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
    
     
 
-![image-20230107221524270](C:\Users\silent_child\AppData\Roaming\Typora\typora-user-images\image-20230107221524270.png)
+![image-20230107221524270](C:/Users/silent_child/AppData/Roaming/Typora/typora-user-images/image-20230107221524270.png)
 
 ### 常用的自定义包名
 
@@ -141,7 +143,7 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 
 ### 导包
 
-![image-20230107221546085](C:\Users\silent_child\AppData\Roaming\Typora\typora-user-images\image-20230107221546085.png)
+![image-20230107221546085](C:/Users/silent_child/AppData/Roaming/Typora/typora-user-images/image-20230107221546085.png)
 
 java.util.Arrays
 
@@ -216,11 +218,11 @@ java.util.Scanner
 
 
 
-![image-20230107221025595](C:\Users\silent_child\AppData\Roaming\Typora\typora-user-images\image-20230107221025595.png)
+![image-20230107221025595](C:/Users/silent_child/AppData/Roaming/Typora/typora-user-images/image-20230107221025595.png)
 
 ### 细节
 
-![image-20230107221556508](C:\Users\silent_child\AppData\Roaming\Typora\typora-user-images\image-20230107221556508.png)
+![image-20230107221556508](C:/Users/silent_child/AppData/Roaming/Typora/typora-user-images/image-20230107221556508.png)
 
 
 
@@ -387,7 +389,7 @@ class 子类名 extends 父类名{
 
 #### 图表
 
-![image-20230108011649501](C:\Users\silent_child\AppData\Roaming\Typora\typora-user-images\image-20230108011649501.png)
+![image-20230108011649501](C:/Users/silent_child/AppData/Roaming/Typora/typora-user-images/image-20230108011649501.png)
 
 如果Father里的age是private，即使GrandPa里也有age，是public，访问age的时候一样到Father就会停止，不会继续查看GrandPa里是否有age。
 
