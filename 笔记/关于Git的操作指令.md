@@ -15,6 +15,7 @@
 |                                          |                                            |
 | **git log**                              | 查看当前分支提交历史                       |
 | **git reflog**                           | 查看命令历史                               |
+| **git log --graph**                      | 版本点线图                                 |
 |                                          |                                            |
 | **git reset --hard** 哈希值              | 恢复至指定版本                             |
 | **git reset --hard** HEAD^^^             | 恢复至上n个版本（n个^）                    |
@@ -30,5 +31,29 @@
 |                                          |                                            |
 | **git restore --staged** <file>          | 暂存区-->工作区                            |
 | **git restore** <file>                   | 本地库-->工作区                            |
+|                                          |                                            |
+| **git branch** 分支名                    | 添加分支                                   |
+| **git checkout -b** 分支名               | 新建一个分支，并切换到该分支               |
+| **git branch -d** 分支名                 | 删除分支                                   |
+| **git branch**                           | 查看所有分支                               |
+| **git branch -v**                        | 查看分支以及每个分支最后一次提交           |
+| **git checkout** 分支名                  | 切换分支                                   |
+|                                          |                                            |
+| **git merge** 分支名                     | 把指定的分支合并到当前分支                 |
+|                                          |                                            |
+| **git remote add** **别名 远程地址**     | 添加远程库                                 |
+| **git remote -v**                        | 查看远程库别名、地址                       |
+| **git remote rm** <name>                 | 删除远程库                                 |
+|                                          |                                            |
+| **git pull** 别名 分支名                 | 远程库-->本地库（合并）                    |
+| **git push** 别名 分支名                 | 本地库-->远程库                            |
+|                                          |                                            |
+| **git clone** 远程地址                   | 克隆远程库                                 |
+|                                          |                                            |
+|                                          |                                            |
+|                                          |                                            |
+|                                          |                                            |
+|                                          |                                            |
+|                                          |                                            |
 |                                          |                                            |
 
