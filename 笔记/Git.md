@@ -145,7 +145,7 @@ git add把文件从工作区>>>>暂存区，git commit把文件从暂存区>>>>�
 
 
 
-### 将缓存区中的文件撤离rm
+### 将暂存区中的文件撤离rm
 
 语法：git rm --cached <file>。将文件从暂存区删除，工作区还是存在
 
@@ -194,7 +194,7 @@ git rm --cached  :仅从暂存区删除
 
 ### 版本穿梭reset
 
-基本语法：**git reset --hard** 版本号
+基本语法：**git reset --hard** 哈希值
 
 在.git隐藏文件中，有一个HEAD文件，里面保存了它指向的地址
 
