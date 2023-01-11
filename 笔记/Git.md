@@ -258,7 +258,7 @@ git checkout -- 文件名，将误删的文件恢复到最新版本。
 | git checkout -b 分支名 | 新建一个分支，并切换到该分支     |
 | git branch             | 查看分支                         |
 | git branch -v          | 查看分支以及每个分支最后一次提交 |
-| git checkout 分支名    | 切换分支                         |
+| git checkout 分支名    | 切换分支（本质是切换HEAD的指向） |
 | git merge 分支名       | 把指定的分支合并到当前分支       |
 | git branch -d 分支名   | 删除分支                         |
 
@@ -301,6 +301,8 @@ git checkout -- 文件名，将误删的文件恢复到最新版本。
 
 当本地库中没有版本更新时，无法推送
 
+git push 后不加参数的时候，默认就是git push origin 当前的分支名
+
 ### 拉取远程库到本地
 
 基本语法：**git pull 别名 分支名**
@@ -308,6 +310,10 @@ git checkout -- 文件名，将误删的文件恢复到最新版本。
 **拉取动作会自动提交到本地库**，远程库代码会合并本地库代码。
 
 拉取的动作必须在链接远程库的基础上进行
+
+git pull = git fetch + git merge
+
+git pull /fetch 后不加参数的时候，跟git push 一样，默认就是git pull origin 当前分支名
 
 ### 克隆远程库到本地
 
