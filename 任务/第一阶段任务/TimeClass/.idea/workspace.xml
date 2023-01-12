@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88dd4428-5a05-4826-af43-d44575a7a781" name="Changes" comment="build(com.TopViewDate): 删除子包，简化路径&#10;docs(com.TopViewDate): 修改注释">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com/TopViewDate/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/com/TopViewDate/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com/TopViewDate/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/com/TopViewDate/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/任务/TopViewDate/task1/Date.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/任务/TopViewDate/task1/Test.class" beforeDir="false" />
+    <list default="true" id="88dd4428-5a05-4826-af43-d44575a7a781" name="Changes" comment="feat(com.TopViewDate): 新增判断日期一致成员方法equals()&#10;test(com.TopViewDate): 新增测试方法testEquals()">
       <change beforePath="$PROJECT_DIR$/../../../笔记/java注意的地方.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../笔记/java注意的地方.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,23 +41,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Git/3122004572-huanghehua/任务&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/Git/3122004572-huanghehua/任务",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Git\3122004572-huanghehua\任务\第一阶段任务\TimeClass" />
@@ -122,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673514364675</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat(com.TopViewDate): 新增判断日期一致成员方法equals()&#10;test(com.TopViewDate): 新增测试方法testEquals()">
+      <created>1673516288179</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673516288179</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,6 +160,7 @@
     <MESSAGE value="feat(TimeClass): 新增任务二框架" />
     <MESSAGE value="feat(TimeClass): 新增任务二计算间隔年月的静态方法&#10;test(TimeClass): 对计算间隔年月的静态方法进行测试" />
     <MESSAGE value="build(com.TopViewDate): 删除子包，简化路径&#10;docs(com.TopViewDate): 修改注释" />
-    <option name="LAST_COMMIT_MESSAGE" value="build(com.TopViewDate): 删除子包，简化路径&#10;docs(com.TopViewDate): 修改注释" />
+    <MESSAGE value="feat(com.TopViewDate): 新增判断日期一致成员方法equals()&#10;test(com.TopViewDate): 新增测试方法testEquals()" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(com.TopViewDate): 新增判断日期一致成员方法equals()&#10;test(com.TopViewDate): 新增测试方法testEquals()" />
   </component>
 </project>

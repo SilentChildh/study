@@ -157,54 +157,10 @@ int s = Integer.parseInt(b);//s == 8;
 
 Java.lang.Object(默认)
 
-- 引用名.equals(引用名)，判断引用对象内的值是否相等。
-
-  - ```java
-    //重写equals()
-    public class Employee {
-        private String name;
-        private int monthSalary;
-        public boolean equals(Object obj) {
-            if(this == obj) {
-                return true;
-            }
-    
-            if(obj instanceof Employee) {
-                Employee e = (Employee)obj;
-                return e.name.equals(this.name) && e.monthSalary == this.monthSalary;
-            }
-    
-            return false;
-        }
-    }
-    public class Worker extends Employee{
-        public boolean equals(Object obj) {
-            if(this == obj) {
-                return true;
-            }
-    
-            if(obj instanceof Worker) {
-                Worker w = (Worker) obj;
-                return super.equals(w);
-            }
-    
-            return false;
-        }
-    }
-    ```
-
-    
-
 - 引用名.hashcode(),用于返回对象的哈希值，哈希值与地址挂钩.在集合中如果需要的话也得重写。
 
-- 引用名.toString(),返回字符串：全类名+@+十六进制哈希值。全类名，即包名+类名。子类需重写，用于返回对象属性信息。当直接输出引用名时，默认调用toString()方法。
-
-  - ```java
-    //重写
-    按alt + ins自动重写
-    ```
-
 - 引用名.getClass(),返回运行类型，（返回字符串：class 全类名）
+
 
 java.util.Scanner
 
@@ -462,7 +418,52 @@ class 子类名 extends 父类名{
 
 在父类中同样存在一样的方法，但因为子类需要特有化，因此需要重写。这样保证了，行为的操作都是一样的，只不过内容发生了变化（即方法名、参数列表不变，代码块里的东西改变）。
 
+### Object类
 
+引用名.equals(引用名)，判断引用对象内的值是否相等。
+
+- ```java
+  //重写equals()
+  public class Employee {
+      private String name;
+      private int monthSalary;
+      public boolean equals(Object obj) {
+          if(this == obj) {
+              return true;
+          }
+  
+          if(obj instanceof Employee) {
+              Employee e = (Employee)obj;
+              return e.name.equals(this.name) && e.monthSalary == this.monthSalary;
+          }
+  
+          return false;
+      }
+  }
+  public class Worker extends Employee{
+      public boolean equals(Object obj) {
+          if(this == obj) {
+              return true;
+          }
+  
+          if(obj instanceof Worker) {
+              Worker w = (Worker) obj;
+              return super.equals(w);
+          }
+  
+          return false;
+      }
+  }
+  
+  ```
+
+
+引用名.toString(),返回字符串：全类名+@+十六进制哈希值。全类名，即包名+类名。子类需重写，用于返回对象属性信息。当直接输出引用名时，默认调用toString()方法。
+
+- ```java
+  //重写
+  按alt + ins自动重写
+  ```
 
 ----
 
