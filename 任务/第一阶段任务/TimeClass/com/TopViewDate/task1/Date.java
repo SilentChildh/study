@@ -105,4 +105,21 @@ public class Date {
             return false;
         }
     }
+
+    public static int intervalDay(Date a, Date b) {
+
+        return 0;
+    }
+
+    public static int intervalMonth(Date a, Date b) {
+
+
+        return 0;
+    }
+
+    public static int intervalYear(Date a, Date b) {
+
+
+        return 0;
+    }
 }

@@ -5,6 +5,30 @@ import java.util.Random;
 public class Test {
 
     public static void main(String[] args) {
+        /*
+            任务一：设计一个日期类
+                子任务1：测试时间类属性
+                子任务2：测试闰年的静态方法
+        */
+        //子任务1：测试时间类属性
+        testField();
+
+        //子任务2：测试闰年的静态方法
+        testLeapYear();
+
+        /*
+            任务二：拓展任务一的日期类的功能
+                子任务1：查看两个TopViewDate的间隔天数
+                子任务2：查看两个TopViewDate的间隔年数、间隔月数
+        */
+        //子任务1：查看两个TopViewDate的间隔天数
+        testIntervalDay();
+
+        //子任务2：查看两个TopViewDate的间隔年数、间隔月数
+        testIntervalY_M();
+
+    }
+    public static void testField() {
         //创建3个日期对象，一个是你的出生日期，一个是随机定义的日期，一个是今年过年的日期
 
         //出生日期
@@ -21,7 +45,8 @@ public class Test {
         //今年过年的日期
         Date newYear = new Date(2023, 1, 22);
         System.out.println(newYear.toString() + "\n=======================");
-
+    }
+    public static void testLeapYear() {
         //提供三个闰年日期和三个平年日期进行测试闰年的静态方法
         //闰年0-2, 平年3-5
         Date[] testLeapYear = {
@@ -33,18 +58,35 @@ public class Test {
                 new Date(1, 9, 10)
         };
         for(int i= 0; i < 6; i++) {
-            testLeapYear(testLeapYear[i].getYear());
-        }
-
-    }
-
-    public static void testLeapYear(int year) {
-        if(Date.leapYear(year)) {
-            System.out.println("该年是闰年");
-        }
-        else {
-            System.out.println("该年是平年");
+            if(Date.leapYear(testLeapYear[i].getYear())) {
+                System.out.println("该年是闰年");
+            }
+            else {
+                System.out.println("该年是平年");
+            }
         }
     }
 
+    public static void testIntervalDay() {
+        //创建两个不同日期的TopViewDate对象，进行调用方法查看间隔天数进行展示
+
+        //创建两个不同日期的TopViewDate对象
+        Date test1 = new Date(2022, 12, 10);
+        Date test2 = new Date(2023, 1, 12);
+
+        //进行调用方法查看间隔天数进行展示
+        System.out.println("test1 与 test2 相差 " + Date.intervalDay(test1, test2) + " 天");
+    }
+
+    public static void testIntervalY_M() {
+        //创建两个不同日期的TopViewDate对象，进行调用方法查看间隔年数、间隔月数进行展示
+
+        //创建两个不同日期的TopViewDate对象
+        Date test1 = new Date(2022, 12, 10);
+        Date test2 = new Date(2023, 1, 12);
+
+        //进行调用方法查看间隔年数、间隔月数进行展示
+        System.out.println("test1 与 test2 相差 " + Date.intervalMonth(test1, test2) + " 月");
+        System.out.println("test1 与 test2 相差 " + Date.intervalYear(test1, test2) + " 年");
+    }
 }
