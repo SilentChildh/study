@@ -1,5 +1,7 @@
 package TopViewDate;
 
+import java.util.Objects;
+
 public class Date {
     //相关属性，年，月，日
     private int year;
@@ -187,4 +189,16 @@ public class Date {
     public static int intervalYear(Date a, Date b) {
         return Math.abs(a.year - b.year);
     }
+
+    //重写equals判断日期是否相同
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj instanceof Date) {
+            Date date = (Date) obj;
+            return year == date.year && month == date.month && day == date.day;
+        }
+        return false;
+    }
+
 }

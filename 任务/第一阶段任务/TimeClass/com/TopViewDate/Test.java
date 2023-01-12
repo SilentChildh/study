@@ -23,12 +23,16 @@ public class Test {
             任务二：拓展任务一的日期类的功能
                 子任务1：查看两个TopViewDate的间隔天数
                 子任务2：查看两个TopViewDate的间隔年数、间隔月数
+                子任务3：进行两个日期间大小比较
         */
         //子任务1：查看两个TopViewDate的间隔天数
         testIntervalDay();
 
         //子任务2：查看两个TopViewDate的间隔年数、间隔月数
         testIntervalY_M();
+
+        //子任务3：进行两个日期间大小比较
+        testEquals();
 
     }
     public static void testField() {
@@ -112,5 +116,31 @@ public class Test {
         //进行调用方法查看间隔年数、间隔月数进行展示
         System.out.println("test1 与 test2 相差 " + Date.intervalMonth(test1, test2) + " 月");
         System.out.println("test1 与 test2 相差 " + Date.intervalYear(test1, test2) + " 年");
+    }
+
+    public static void testEquals() {
+        //创建多个不同日期的TopViewDate对象，分别展示日期不同，日期相同的情况
+
+        //创建多个不同日期的TopViewDate对象
+        Date[] test = {
+                new Date(2022, 10, 3),
+                new Date(2022, 10, 3),
+                new Date(2015, 5, 29),
+                new Date(2015, 5, 29)
+        };
+
+        //遍历对比
+        for(int i = 0; i < test.length - 1; i++) {
+            for(int j = i + 1; j < test.length; j++) {
+                if(test[i].equals(test[j])){
+                    System.out.println("test " + i + " 与 " + "test " + j + " 的日期一致");
+                }
+                else {
+                    System.out.println("test " + i + " 与 " + "test " + j + " 的日期不一致");
+                }
+            }
+
+        }
+
     }
 }

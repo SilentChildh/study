@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88dd4428-5a05-4826-af43-d44575a7a781" name="Changes" comment="feat(TimeClass): 新增任务二计算间隔年月的静态方法&#10;test(TimeClass): 对计算间隔年月的静态方法进行测试">
+    <list default="true" id="88dd4428-5a05-4826-af43-d44575a7a781" name="Changes" comment="build(com.TopViewDate): 删除子包，简化路径&#10;docs(com.TopViewDate): 修改注释">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com/TopViewDate/task1/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/com/TopViewDate/task1/Date.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/TopViewDate/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/com/TopViewDate/Date.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/TopViewDate/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/com/TopViewDate/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/任务/TopViewDate/task1/Date.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/任务/TopViewDate/task1/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../笔记/java注意的地方.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../笔记/java注意的地方.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,22 +69,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="TopViewDate.task1.Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="TopViewDate.task1.Test" />
-      <module name="任务" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="TopViewDate.task1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TopViewDate.task1.Test" />
         <item itemvalue="Application.TopViewDate.task1.Test" />
       </list>
     </recent_temporary>
@@ -125,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673505064031</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="build(com.TopViewDate): 删除子包，简化路径&#10;docs(com.TopViewDate): 修改注释">
+      <created>1673514364675</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1673514364675</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +156,7 @@
     <MESSAGE value="fix(TimeClass): 修改时间类" />
     <MESSAGE value="feat(TimeClass): 新增任务二框架" />
     <MESSAGE value="feat(TimeClass): 新增任务二计算间隔年月的静态方法&#10;test(TimeClass): 对计算间隔年月的静态方法进行测试" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(TimeClass): 新增任务二计算间隔年月的静态方法&#10;test(TimeClass): 对计算间隔年月的静态方法进行测试" />
+    <MESSAGE value="build(com.TopViewDate): 删除子包，简化路径&#10;docs(com.TopViewDate): 修改注释" />
+    <option name="LAST_COMMIT_MESSAGE" value="build(com.TopViewDate): 删除子包，简化路径&#10;docs(com.TopViewDate): 修改注释" />
   </component>
 </project>
