@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88dd4428-5a05-4826-af43-d44575a7a781" name="Changes" comment="feat(com.TopViewDate): 新增判断日期一致成员方法equals()&#10;test(com.TopViewDate): 新增测试方法testEquals()">
-      <change beforePath="$PROJECT_DIR$/../../../笔记/java注意的地方.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../笔记/java注意的地方.md" afterDir="false" />
+    <list default="true" id="88dd4428-5a05-4826-af43-d44575a7a781" name="Changes" comment="docs(笔记/java.md): 调整笔记位置">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/TopViewDate/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/com/TopViewDate/Date.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/TopViewDate/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/com/TopViewDate/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +67,22 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TopViewDate.Test" />
+      <module name="任务" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TopViewDate.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.TopViewDate.task1.Test" />
       </list>
     </recent_temporary>
@@ -125,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673516288179</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="docs(笔记/java.md): 调整笔记位置">
+      <created>1673516523512</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673516523512</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,6 +184,7 @@
     <MESSAGE value="feat(TimeClass): 新增任务二计算间隔年月的静态方法&#10;test(TimeClass): 对计算间隔年月的静态方法进行测试" />
     <MESSAGE value="build(com.TopViewDate): 删除子包，简化路径&#10;docs(com.TopViewDate): 修改注释" />
     <MESSAGE value="feat(com.TopViewDate): 新增判断日期一致成员方法equals()&#10;test(com.TopViewDate): 新增测试方法testEquals()" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(com.TopViewDate): 新增判断日期一致成员方法equals()&#10;test(com.TopViewDate): 新增测试方法testEquals()" />
+    <MESSAGE value="docs(笔记/java.md): 调整笔记位置" />
+    <option name="LAST_COMMIT_MESSAGE" value="docs(笔记/java.md): 调整笔记位置" />
   </component>
 </project>

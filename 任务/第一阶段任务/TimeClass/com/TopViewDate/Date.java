@@ -201,4 +201,62 @@ public class Date {
         return false;
     }
 
+    //加天数
+    public void addDay(int add) {
+        int left = Math.abs(add) - (dayNumber(this.year, this.month) - this.day);//计算剩余可加天数
+
+        if(left <= 0) {//此时添加的天数不足以到下一个月
+            this.day += Math.abs(add);
+            return;
+        }
+        if(this.month == 12) {//当月是12月时，要进入下一年
+            this.month = 1;
+            this.year++;
+        }
+        else this.month++;
+        while(left != 0) {
+            left -= dayNumber(this.year, this.month);//继续计算剩余可加天数
+
+            if(left <= 0) {//此时添加的天数不足以到下一个月
+                this.day = left + dayNumber(this.year, this.month);
+                return;
+            }
+
+            if(this.month == 12) {//当月是12月时，要进入下一年
+                this.month = 1;
+                this.year++;
+            }
+            else this.month++;
+        }
+
+    }
+
+    //减天数
+    public void subtractDay(int sub) {
+        int left = Math.abs(sub) - this.day;//计算剩余可加天数
+
+        if(left <= 0) {//此时添加的天数不足以到上一个月
+            this.day -= Math.abs(sub);
+            return;
+        }
+        if(this.month == 1) {//当月是12月时，要进入上一年
+            this.month = 12;
+            this.year--;
+        }
+        else this.month--;
+        while(left != 0) {
+            left -= dayNumber(this.year, this.month);//继续计算剩余可减天数
+
+            if(left <= 0) {//此时添加的天数不足以到上一个月
+                this.day = Math.abs(left);
+                return;
+            }
+
+            if(this.month == 1) {//当月是12月时，要进入上一年
+                this.month = 12;
+                this.year--;
+            }
+            else this.month--;
+        }
+    }
 }
