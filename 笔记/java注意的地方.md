@@ -24,17 +24,9 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 
 
 
-![img](https://gitee.com/silent-child/drawing-bed-warehouse/raw/master/img/image-20230107140103135.png)
-
-----
+![png](https://raw.githubusercontent.com/SilentChildh/PicGo-img-bed/master/202301121150069.png)
 
 
-
-
-
-## 方法调用细节（规则）
-
-![img](https://img-blog.csdnimg.cn/9ea74ed5a5d2454688ebbdc7975a4216.png)
 
 ----
 
@@ -72,7 +64,9 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 
 ## 构造器
 
-![img](https://gitee.com/silent-child/drawing-bed-warehouse/raw/master/img/image-20230107174941346.png)
+![img](C:/Users/silent_child/AppData/Roaming/Typora/typora-user-images/image-20230107174941346.png)
+
+
 
 ----
 
@@ -80,7 +74,7 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 
 ## this细节
 
-![image-20230107181750576](https://gitee.com/silent-child/drawing-bed-warehouse/raw/master/img/image-20230107181750576.png)
+![png](https://raw.githubusercontent.com/SilentChildh/PicGo-img-bed/master/202301121155633.png)
 
 
 
@@ -102,29 +96,31 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 
 如：
 
-![image-20230107221635060](https://gitee.com/silent-child/drawing-bed-warehouse/raw/master/img/image-20230107221635060.png)
+![](https://raw.githubusercontent.com/SilentChildh/PicGo-img-bed/master/202301121156451.png)
+
+
 
 ### 命名
 
 1. 通常只使用小写字母
-   
 1. 通常每个包的名字只使用1个单词
-   
 1. 域名倒置
     通常使用组织的网络域名的逆序,例如:
     如果域名为javagroup.com,包可以命名为:com.javagroup.mypackage
     目前我们能使用的包名前缀只有 "com" 和 "cn"           
-    
 1. 包名的后续部分依不同机构各自内部的规范不同而不同.这类命名规范可能以特定
     目录名的组成来区分部门、项目、机器或注册名
     例:com.javagroup.research.powerproject
                项目名        部门名
-    
 1. . 父包和子包之间使用"."分隔          
-   
-    
 
-![image-20230107221524270](https://gitee.com/silent-child/drawing-bed-warehouse/raw/master/img/image-20230107221524270.png)
+
+
+
+
+ 
+
+![image-20230107221524270](https://raw.githubusercontent.com/SilentChildh/PicGo-img-bed/master/202301121157325.png)
 
 ### 常用的自定义包名
 
@@ -143,7 +139,7 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 
 ### 导包
 
-![image-20230107221546085](https://gitee.com/silent-child/drawing-bed-warehouse/raw/master/img/image-20230107221546085.png)
+![image-20230107221635060](https://raw.githubusercontent.com/SilentChildh/PicGo-img-bed/master/202301121156769.png)
 
 java.util.Arrays
 
@@ -218,11 +214,11 @@ java.util.Scanner
 
 
 
-![image-20230107221025595](https://gitee.com/silent-child/drawing-bed-warehouse/raw/master/img/image-20230107221025595.png)
+![image-20230107221025595](https://raw.githubusercontent.com/SilentChildh/PicGo-img-bed/master/202301121157030.png)
 
 ### 细节
 
-![image-20230107221556508](https://gitee.com/silent-child/drawing-bed-warehouse/raw/master/img/image-20230107221556508.png)
+![image-20230107221556508](https://raw.githubusercontent.com/SilentChildh/PicGo-img-bed/master/202301121158549.png)
 
 
 
@@ -389,7 +385,7 @@ class 子类名 extends 父类名{
 
 #### 图表
 
-![image-20230108011649501](https://gitee.com/silent-child/drawing-bed-warehouse/raw/master/img/image-20230108011649501.png)
+![image-20230108011649501](https://raw.githubusercontent.com/SilentChildh/PicGo-img-bed/master/202301121158912.png)
 
 如果Father里的age是private，即使GrandPa里也有age，是public，访问age的时候一样到Father就会停止，不会继续查看GrandPa里是否有age。
 
