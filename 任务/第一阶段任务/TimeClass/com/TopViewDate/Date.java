@@ -1,4 +1,4 @@
-package TopViewDate.task1;
+package TopViewDate;
 
 public class Date {
     //相关属性，年，月，日
@@ -61,7 +61,7 @@ public class Date {
             }
         }
         else if(this.month == 2) {
-            if(this.year % 4 == 0 && this.year % 100 != 0 || this.year % 400 == 0) {//闰年
+            if(leapYear(this.year)) {//闰年
                 if(day <= 29 && day >= 1) {
                     this.day = day;
                     //System.out.println("该年是闰年");
@@ -97,6 +97,7 @@ public class Date {
         return "Date{" + year + '-' + month + '-' + day + '}';
     }
 
+    //判断闰年
     public static boolean leapYear(int year) {
         if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {//闰年
             return true;
@@ -106,7 +107,8 @@ public class Date {
         }
     }
 
-    public static int dayNumber(int year, int month) {//判断当月的天数
+    //获取当月的天数
+    public static int dayNumber(int year, int month) {
 
         if(month == 4 || month == 6 || month == 9 || month == 11) {//小月
             return 30;
@@ -121,6 +123,8 @@ public class Date {
             return 31;
         }
     }
+
+    //获取相差天数
     public static int intervalDay(Date a, Date b) {
 
         //获取a，b是在对应年月的第几天
@@ -164,6 +168,7 @@ public class Date {
         }
     }
 
+    //获取间隔月数
     public static int intervalMonth(Date a, Date b) {
 
         //Math.abs(a.month - b.month)可替换为intervalYear(a, b)
@@ -178,6 +183,7 @@ public class Date {
         }
     }
 
+    //获取间隔年数
     public static int intervalYear(Date a, Date b) {
         return Math.abs(a.year - b.year);
     }

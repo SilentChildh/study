@@ -7,9 +7,6 @@
     <list default="true" id="88dd4428-5a05-4826-af43-d44575a7a781" name="Changes" comment="feat(TimeClass): 新增任务二计算间隔年月的静态方法&#10;test(TimeClass): 对计算间隔年月的静态方法进行测试">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com/TopViewDate/task1/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/com/TopViewDate/task1/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com/TopViewDate/task1/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/com/TopViewDate/task1/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/任务/TopViewDate/task1/Date.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/任务/TopViewDate/task1/Date.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/任务/TopViewDate/task1/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/任务/TopViewDate/task1/Test.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,23 +42,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/Git/3122004572-huanghehua/任务",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Git/3122004572-huanghehua/任务&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Git\3122004572-huanghehua\任务\第一阶段任务\TimeClass" />
@@ -83,6 +80,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TopViewDate.task1.Test" />
         <item itemvalue="Application.TopViewDate.task1.Test" />
       </list>
     </recent_temporary>
@@ -144,7 +142,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="tast2_for_master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>

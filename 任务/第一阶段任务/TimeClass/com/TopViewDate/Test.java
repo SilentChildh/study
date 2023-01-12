@@ -1,4 +1,4 @@
-package TopViewDate.task1;
+package TopViewDate;
 
 import java.util.Random;
 /*
