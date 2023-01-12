@@ -1,14 +1,14 @@
-package com.TopViewDate;
+package TopViewDate.task1;
 
 public class Date {
     //相关属性，年，月，日
-    private int year = -1;//年份可以为0
+    private int year;
     private int month;
     private int day;
 
     public Date(int year, int month, int day) {
         setYear(year);
-        if(this.year < 0) return;//输入年份错误出构造失败
+        if(this.year == 0) return;//输入年份错误出构造失败
 
         setMonth(month);
         if(this.month == 0) return;//输入月份错误出构造失败
@@ -32,8 +32,8 @@ public class Date {
     }
 
     public void setYear(int year) {
-        if(year < 0) System.out.println("输入年份错误");
-        else this.year = year;
+        if(year > 0) this.year = year;
+        else System.out.println("输入年份错误");
     }
 
     public int getMonth() {
@@ -54,17 +54,17 @@ public class Date {
         if(this.month == 4 || this.month == 6 || this.month == 9 || this.month == 11) {//小月
             if(day <= 30 && day >= 1) {
                 this.day = day;
-                System.out.println("该月是小月");
+                //System.out.println("该月是小月");
             }
             else {
                 System.out.println("输入日期错误");
             }
         }
         else if(this.month == 2) {
-            if(this.year / 4 == 0 || this.year / 400 == 0) {//闰年
+            if(this.year % 4 == 0 || this.year % 400 == 0) {//闰年
                 if(day <= 29 && day >= 1) {
                     this.day = day;
-                    System.out.println("该年是闰年");
+                    //System.out.println("该年是闰年");
                 }
                 else {
                     System.out.println("输入日期错误");
@@ -73,6 +73,7 @@ public class Date {
             else {
                 if(day <= 28 && day >= 1) {
                     this.day = day;
+                    //System.out.println("该年是平年");
                 }
                 else {
                     System.out.println("输入日期错误");
@@ -82,7 +83,7 @@ public class Date {
         else {//大月
             if(day <= 31 && day >= 1) {
                 this.day = day;
-                System.out.println("该月是大月");
+                //System.out.println("该月是大月");
             }
             else {
                 System.out.println("输入日期错误");
@@ -96,5 +97,12 @@ public class Date {
         return "Date{" + year + '-' + month + '-' + day + '}';
     }
 
-
+    public static boolean leapYear(int year) {
+        if(year % 4 == 0 || year % 400 == 0) {//闰年
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
