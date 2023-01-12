@@ -108,18 +108,24 @@ public class Date {
 
     public static int intervalDay(Date a, Date b) {
 
+
         return 0;
     }
 
     public static int intervalMonth(Date a, Date b) {
 
-
-        return 0;
+        if(a.year == b.year) {
+            return Math.abs(a.month - b.month);
+        }
+        else if(a.year < b.year) {//b + (12 - a)
+            return (Math.abs(a.year - b.year) - 1) * 12 + (12 - a.month) + b.month;
+        }
+        else {//a + (12 - b)
+            return (Math.abs(a.year - b.year) - 1) * 12 + (12 - b.month) + a.month;
+        }
     }
 
     public static int intervalYear(Date a, Date b) {
-
-
-        return 0;
+        return Math.abs(a.year - b.year);
     }
 }

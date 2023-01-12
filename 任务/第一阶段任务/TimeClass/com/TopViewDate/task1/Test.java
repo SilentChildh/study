@@ -11,10 +11,10 @@ public class Test {
                 子任务2：测试闰年的静态方法
         */
         //子任务1：测试时间类属性
-        testField();
+        //testField();
 
         //子任务2：测试闰年的静态方法
-        testLeapYear();
+        //testLeapYear();
 
         /*
             任务二：拓展任务一的日期类的功能
@@ -22,7 +22,7 @@ public class Test {
                 子任务2：查看两个TopViewDate的间隔年数、间隔月数
         */
         //子任务1：查看两个TopViewDate的间隔天数
-        testIntervalDay();
+        //testIntervalDay();
 
         //子任务2：查看两个TopViewDate的间隔年数、间隔月数
         testIntervalY_M();
@@ -71,7 +71,7 @@ public class Test {
         //创建两个不同日期的TopViewDate对象，进行调用方法查看间隔天数进行展示
 
         //创建两个不同日期的TopViewDate对象
-        Date test1 = new Date(2022, 12, 10);
+        Date test1 = new Date(2023, 12, 10);
         Date test2 = new Date(2023, 1, 12);
 
         //进行调用方法查看间隔天数进行展示
@@ -81,9 +81,30 @@ public class Test {
     public static void testIntervalY_M() {
         //创建两个不同日期的TopViewDate对象，进行调用方法查看间隔年数、间隔月数进行展示
 
+        /*
+            测试间隔年份：
+                测试1：年份相同；√
+                测试2：前者<后者；√
+                测试3：前者>后者。√
+
+            测试间隔月份：
+                测试1：年份相同：
+                    1）：前者==后者；√
+                    2）：前者<后者；√
+                    3）：前者>后者。√
+                测试2：年份：前者<后者相同：
+                    1）：前者==后者；√
+                    2）：前者<后者；√
+                    3）：前者>后者。√
+                测试3：年份：前者>后者：
+                    1）：前者==后者；√
+                    2）：前者<后者；√
+                    3）：前者>后者。√
+
+        */
         //创建两个不同日期的TopViewDate对象
-        Date test1 = new Date(2022, 12, 10);
-        Date test2 = new Date(2023, 1, 12);
+        Date test1 = new Date(2023, 5, 10);
+        Date test2 = new Date(2022, 3, 12);
 
         //进行调用方法查看间隔年数、间隔月数进行展示
         System.out.println("test1 与 test2 相差 " + Date.intervalMonth(test1, test2) + " 月");

@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88dd4428-5a05-4826-af43-d44575a7a781" name="Changes" comment="fix(TimeClass): 修改时间类">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+    <list default="true" id="88dd4428-5a05-4826-af43-d44575a7a781" name="Changes" comment="feat(TimeClass): 新增任务二框架">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com/TopViewDate/task1/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/com/TopViewDate/task1/Date.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com/TopViewDate/task1/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/com/TopViewDate/task1/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/任务/TopViewDate/task1/Date.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/任务/TopViewDate/task1/Date.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/任务/TopViewDate/task1/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/任务/TopViewDate/task1/Test.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +28,14 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../../.." value="master" />
+      </map>
+    </option>
+    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -87,7 +97,7 @@
       <updated>1673445430879</updated>
       <workItem from="1673445431814" duration="7086000" />
       <workItem from="1673499017267" duration="2721000" />
-      <workItem from="1673501793292" duration="1355000" />
+      <workItem from="1673501793292" duration="3023000" />
     </task>
     <task id="LOCAL-00001" summary="feat(TimeClass): 新增时间类">
       <created>1673452516073</created>
@@ -103,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673501474305</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat(TimeClass): 新增任务二框架">
+      <created>1673503318730</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1673503318730</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,7 +137,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="tast2_for_master" />
                       </list>
                     </value>
                   </entry>
@@ -135,6 +152,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat(TimeClass): 新增时间类" />
     <MESSAGE value="fix(TimeClass): 修改时间类" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(TimeClass): 修改时间类" />
+    <MESSAGE value="feat(TimeClass): 新增任务二框架" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(TimeClass): 新增任务二框架" />
   </component>
 </project>
