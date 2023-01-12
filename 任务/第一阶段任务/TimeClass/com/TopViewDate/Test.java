@@ -26,13 +26,25 @@ public class Test {
                 子任务3：进行两个日期间大小比较
         */
         //子任务1：查看两个TopViewDate的间隔天数
-        testIntervalDay();
+        //testIntervalDay();
 
         //子任务2：查看两个TopViewDate的间隔年数、间隔月数
-        testIntervalY_M();
+        //testIntervalY_M();
 
         //子任务3：进行两个日期间大小比较
-        testEquals();
+        //testEquals();
+
+
+        /*
+            任务三：拓展任务二的日期类功能
+                子任务1：可以实现自由加天数的操作
+                子任务2：可以实现自由减天数的操作
+        */
+        //子任务1：可以实现自由加天数的操作
+        //testAdd();
+
+        //子任务2：可以实现自由减天数的操作
+        testSubtract();
 
     }
     public static void testField() {
@@ -142,5 +154,19 @@ public class Test {
 
         }
 
+    }
+
+    public static void testAdd() {
+        //自由加天数的操作，需检验到日期合法性和月份合法性的临界情况
+        Date test = new Date(2023, 1, 26);
+        test.addDay(-3787);//该方法取绝对值
+        System.out.println("after add: " + test.toString());
+    }
+
+    public static void testSubtract() {
+        //自由减天数的操作，需检验到日期合法性和月份合法性的临界情况
+        Date test = new Date(2023, 1, 26);
+        test.subtractDay(100);//该方法取绝对值
+        System.out.println("after add: " + test.toString());
     }
 }
