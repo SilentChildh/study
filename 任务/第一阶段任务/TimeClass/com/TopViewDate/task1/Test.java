@@ -1,7 +1,10 @@
 package TopViewDate.task1;
 
 import java.util.Random;
-
+/*
+* 测试校对相差天数利用了https://www.beijing-time.org/riqi.htm
+*
+* */
 public class Test {
 
     public static void main(String[] args) {
@@ -22,7 +25,7 @@ public class Test {
                 子任务2：查看两个TopViewDate的间隔年数、间隔月数
         */
         //子任务1：查看两个TopViewDate的间隔天数
-        //testIntervalDay();
+        testIntervalDay();
 
         //子任务2：查看两个TopViewDate的间隔年数、间隔月数
         testIntervalY_M();
@@ -71,8 +74,8 @@ public class Test {
         //创建两个不同日期的TopViewDate对象，进行调用方法查看间隔天数进行展示
 
         //创建两个不同日期的TopViewDate对象
-        Date test1 = new Date(2023, 12, 10);
-        Date test2 = new Date(2023, 1, 12);
+        Date test1 = new Date(2000, 9, 10);
+        Date test2 = new Date(2023, 10, 10);
 
         //进行调用方法查看间隔天数进行展示
         System.out.println("test1 与 test2 相差 " + Date.intervalDay(test1, test2) + " 天");
@@ -103,7 +106,7 @@ public class Test {
 
         */
         //创建两个不同日期的TopViewDate对象
-        Date test1 = new Date(2023, 5, 10);
+        Date test1 = new Date(2022, 3, 10);
         Date test2 = new Date(2022, 3, 12);
 
         //进行调用方法查看间隔年数、间隔月数进行展示

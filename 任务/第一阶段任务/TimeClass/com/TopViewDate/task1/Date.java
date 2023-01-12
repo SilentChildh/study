@@ -61,7 +61,7 @@ public class Date {
             }
         }
         else if(this.month == 2) {
-            if(this.year % 4 == 0 || this.year % 400 == 0) {//闰年
+            if(this.year % 4 == 0 && this.year % 100 != 0 || this.year % 400 == 0) {//闰年
                 if(day <= 29 && day >= 1) {
                     this.day = day;
                     //System.out.println("该年是闰年");
@@ -98,7 +98,7 @@ public class Date {
     }
 
     public static boolean leapYear(int year) {
-        if(year % 4 == 0 || year % 400 == 0) {//闰年
+        if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {//闰年
             return true;
         }
         else {
@@ -106,14 +106,67 @@ public class Date {
         }
     }
 
+    public static int dayNumber(int year, int month) {//判断当月的天数
+
+        if(month == 4 || month == 6 || month == 9 || month == 11) {//小月
+            return 30;
+        }
+        else if(month == 2){
+            if(leapYear(year)) {
+                return 29;
+            }
+            else return 28;
+        }
+        else {//大月
+            return 31;
+        }
+    }
     public static int intervalDay(Date a, Date b) {
 
+        //获取a，b是在对应年月的第几天
+        int aDay = a.day, bDay = b.day;
+        for(int i = 1; i < a.month; i++) {
+            aDay += dayNumber(a.year, i);
+        }
+        for(int i = 1; i < b.month; i++) {
+            bDay += dayNumber(b.year, i);
+        }
 
-        return 0;
+        if(a.year == b.year) return Math.abs(aDay - bDay);
+        else {
+            int sum = 0;//计算相差年份之间的天数
+
+            //判断先后顺序
+            int preYear, lastYear, preDay, lastDay;
+            if (a.year < b.year) {
+                preYear = a.year;
+                preDay = aDay;//对应年份的天数
+
+                lastYear = b.year;
+                lastDay = bDay;//对应年份的天数
+            }
+            else {
+                preYear = b.year;
+                preDay = bDay;//对应年份的天数
+
+                lastYear = a.year;
+                lastDay = aDay;//对应年份的天数
+            }
+
+            for (int i = preYear; i < lastYear; i++) {
+                if (leapYear(i)) {
+                    sum += 366;
+                }
+                else sum += 365;
+            }
+
+            return sum + lastDay - preDay;
+        }
     }
 
     public static int intervalMonth(Date a, Date b) {
 
+        //Math.abs(a.month - b.month)可替换为intervalYear(a, b)
         if(a.year == b.year) {
             return Math.abs(a.month - b.month);
         }

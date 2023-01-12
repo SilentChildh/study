@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88dd4428-5a05-4826-af43-d44575a7a781" name="Changes" comment="feat(TimeClass): 新增任务二框架">
+    <list default="true" id="88dd4428-5a05-4826-af43-d44575a7a781" name="Changes" comment="feat(TimeClass): 新增任务二计算间隔年月的静态方法&#10;test(TimeClass): 对计算间隔年月的静态方法进行测试">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com/TopViewDate/task1/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/com/TopViewDate/task1/Date.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com/TopViewDate/task1/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/com/TopViewDate/task1/Test.java" afterDir="false" />
@@ -97,7 +97,7 @@
       <updated>1673445430879</updated>
       <workItem from="1673445431814" duration="7086000" />
       <workItem from="1673499017267" duration="2721000" />
-      <workItem from="1673501793292" duration="3023000" />
+      <workItem from="1673501793292" duration="8792000" />
     </task>
     <task id="LOCAL-00001" summary="feat(TimeClass): 新增时间类">
       <created>1673452516073</created>
@@ -120,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673503318730</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat(TimeClass): 新增任务二计算间隔年月的静态方法&#10;test(TimeClass): 对计算间隔年月的静态方法进行测试">
+      <created>1673505064031</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1673505064031</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +160,7 @@
     <MESSAGE value="feat(TimeClass): 新增时间类" />
     <MESSAGE value="fix(TimeClass): 修改时间类" />
     <MESSAGE value="feat(TimeClass): 新增任务二框架" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(TimeClass): 新增任务二框架" />
+    <MESSAGE value="feat(TimeClass): 新增任务二计算间隔年月的静态方法&#10;test(TimeClass): 对计算间隔年月的静态方法进行测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(TimeClass): 新增任务二计算间隔年月的静态方法&#10;test(TimeClass): 对计算间隔年月的静态方法进行测试" />
   </component>
 </project>
