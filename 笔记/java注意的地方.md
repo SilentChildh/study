@@ -12,6 +12,13 @@ short、byte、char在进行计算的时候，先转化为int类型计算。
 
 String可以运用在switch中来当作判断
 
+### 运算符
+
+```java
+byte a = 100;
+a += 20;//实际上是， a = a + 20;且隐式的运用了强制类型转换(byte)(a + 20);
+```
+
 ## 编码
 
 asc||只有128个字符，一个字符用1个字节保存。
@@ -73,6 +80,8 @@ utf-8是unicode的优化版。是一种动态的编码，一个字符可以利�
 
 
 ## this细节
+
+this指向的就是一个具体的对象，可以理解为是一个引用。
 
 ![png](https://raw.githubusercontent.com/SilentChildh/PicGo-img-bed/master/202301121155633.png)
 
@@ -158,13 +167,17 @@ int s = Integer.parseInt(b);//s == 8;
 Java.lang.Object(默认)
 
 - 引用名.hashcode(),用于返回对象的哈希值，哈希值与地址挂钩.在集合中如果需要的话也得重写。
-
-- 引用名.getClass(),返回运行类型，（返回字符串：class 全类名）
+- 引用名.getClass(),返回引用对象运行类型，（返回字符串：class 全类名）
+- getClass()，返回当前类的运行类型
 
 
 java.util.Scanner
 
 - 导入Scanner类
+
+java.lang.System
+
+- System.CurrentTimeMillis(),返回毫秒级的当前时间（long类型）
 
 
 
@@ -223,7 +236,7 @@ private：大多数的成员变量都是修饰符为private的，它们不希望
 
 子类对于访问修饰符重点在于父子关系，否则视为正常的一个类来看待修饰符即可。（在作为<u>**子类且同包**</u>的情况下，我们只需要关注父类中那些被private修饰的属性/方法）。
 
-**Java的[访问控制](https://so.csdn.net/so/search?q=访问控制&spm=1001.2101.3001.7020)是停留在**编译层的**，也就是它**不会在.class文件中留下任何的痕迹，只在编译的时候进行访问控制的检查。其实，通过反射的手段，是可以访问任何包下任何类中的成员，例如，访问类的私有成员也是可能的。
+**Java的访问控制是停留在**编译层的**，也就是它**不会在.class文件中留下任何的痕迹，只在编译的时候进行访问控制的检查。其实，通过反射的手段，是可以访问任何包下任何类中的成员，例如，访问类的私有成员也是可能的。
 
 ### 总结
 
@@ -428,11 +441,11 @@ class 子类名 extends 父类名{
       private String name;
       private int monthSalary;
       public boolean equals(Object obj) {
-          if(this == obj) {
+          if(this == obj) {//引用相等
               return true;
           }
   
-          if(obj instanceof Employee) {
+          if(obj instanceof Employee) {//继承关系
               Employee e = (Employee)obj;
               return e.name.equals(this.name) && e.monthSalary == this.monthSalary;
           }
