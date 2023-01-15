@@ -1,14 +1,14 @@
-public class Bird implements EggLayability{
-    private Flyability flyability = new ImpFly();
-    private ImpEggLay eggLayability = new ImpEggLay();
+public class Bird implements EggLayable {
+    private Flyable flyable = new ImpFly();
+    private ImpEggLay eggLayable = new ImpEggLay();
 
     @Override
     public void eggLay() {
-        eggLayability.eggLay();
+        eggLayable.eggLay();
     }
 
     public void fly() {
-        flyability.fly();
+        flyable.fly();
     }
 
     public static void main(String[] args) {

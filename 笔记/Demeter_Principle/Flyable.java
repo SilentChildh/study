@@ -1,7 +1,7 @@
-public interface Flyability {
+public interface Flyable {
     void fly();
 }
-class ImpFly implements Flyability{
+class ImpFly implements Flyable {
 
     @Override
     public void fly() {

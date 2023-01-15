@@ -1,7 +1,7 @@
-public interface EggLayability {
+public interface EggLayable {
     void eggLay();
 }
-class ImpEggLay implements EggLayability{
+class ImpEggLay implements EggLayable {
 
     @Override
     public void eggLay() {
