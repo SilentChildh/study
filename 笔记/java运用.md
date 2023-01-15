@@ -391,7 +391,7 @@ Integer integer = 10;
 //方式1
 String str1 = integer + "";
 //方式2
-String str2 = Integer.toString();
+String str2 = integer.toString();
 //方式3
 String str3 = String.valueOf(integer);
 
@@ -414,6 +414,38 @@ Integer integer2 = new Integer(str);//构造器
 
 
 
+
+
+## Integer常用成员
+
+| 成员                                | 作用                   |
+| ----------------------------------- | ---------------------- |
+| Integer.MAX_VALUE                   | 返回最大值             |
+| Integer.MIN_VALUE                   | 返回最小值             |
+|                                     |                        |
+| integer.toString()//普通方法        | 对象值转为字符串       |
+| Interger.parseInt(String)//静态方法 | 字符串转为对象值       |
+|                                     |                        |
+| Integer.valueOf(int)//静态方法      | 装箱。基本值转为对象值 |
+| integer.intValue()//普通方法        | 拆箱。对象值转为基础值 |
+|                                     |                        |
+
+## Character常用成员
+
+| 成员                               | 作用     |
+| ---------------------------------- | -------- |
+| Character.isDigit('a')//静态       | 判断数字 |
+| Character.isLetter('a')//静态      | 判断字母 |
+| Character.isUpperCase('a')//静态   | 判断大写 |
+| Character.isLowerCase('a')//静态   | 判断小写 |
+|                                    |          |
+| Character.isWhiteSpace)('a')//静态 | 判断空格 |
+| Character.toUpperCase('a')//静态   | 转成大写 |
+| Character.toLowerCase('a')//静态   | 转成小写 |
+|                                    |          |
+
+
+
 ## 包装类的其他方法
 
 有需要时查源码
@@ -421,3 +453,468 @@ Integer integer2 = new Integer(str);//构造器
 
 
 # String类
+
+## 创建String对象
+
+### 直接赋值
+
+String  str = "string";
+
+1. 先检查常量池中是否存在"string"这个数据，如果有，那么str指向该地址。
+2. 如果没有，那么在常量池中创建string这个数据，然后str再指向该地址。
+
+
+
+### 利用构造器
+
+String str = new String("string");
+
+1. 在堆区创建一个空间，str指向堆区的这个地址。
+2. 堆区中其实是保存了一个value属性，该属性指向常量池的地址。
+3. 检查常量池是否存在string这个数据，
+    1. 如果有，那么value直接指向该地址；
+    2. 如果没有，那么在常量池中创建string这个数据，str再指向该地址。
+
+
+
+## 特性
+
+final类，不可再继承。
+
+value数组被final修饰，所以由String 创建的字符序列内容不可变动，将一直保留在常量池中。
+
+每次修改实际上是修改value指向的地址。
+
+字符统一用unicode编码，一个字符两字节
+
+
+
+创建时注意的事项
+
+指向常量池的引用相加
+
+```java
+//假设常量池中没有数据
+String str1 = "string1";//此时创建一个string1这个数据
+str1 = "string";//此时又创建了一个string2这个数据。
+//string1和string2都存放于常量池中，str1的变化是：一开始指向string1的地址，后来指向string2的地址
+```
+
+~~~java
+//假设常量池中没有数据
+String str2 = "string1" + "string2";//此时只创建了一个string1string2这个数据。
+//即等价于 String str2 = "string1string2";
+//因为会做优化，先组合起来，判断常量池中是否存在这个数据，没有就创建，然后str2指向该地址。
+~~~
+
+只要出现一个在堆中以value来指向常量池的引用相加
+
+~~~java
+String str1 = "string1";
+String str2 = "string2";
+String str3 = str1 + "string2";
+/*
+	底层原理：
+	1. StringBuilder str = new StringBuilder();//先创建一个StringBuilder对象
+	2. str.append(str1);
+	3. str.append("string2");
+	4. 最后执行str.toString()返回一个存储在堆区的字符串对象，
+		赋值给str3
+	*/
+~~~
+
+## 常用方法
+
+| 成员                                                     | 作用                                                         |
+| -------------------------------------------------------- | ------------------------------------------------------------ |
+| string.equals(String)//普通                              | 判断相等，区分大小写                                         |
+| string.equalsIgnoreCase(String)//普通                    | 判断相等，忽略大小写                                         |
+| string.length)()//普通                                   | 返回字符串长度                                               |
+| string.indexOf(String/**int（传入一个字符实参）**)//普通 | 找第一次出现的索引值，不存在返回-1                           |
+| string.lastIndexOf(String/int(传入一个字符实参))//普通   | 从右往左找                                                   |
+| string.substring(索引值)//普通                           | 获取索引值以后的子串                                         |
+| string.substring(前索引值, 后索引值)//普通               | 获取左闭右开的子串                                           |
+| string.charAt(int)//普通                                 | 获取索引位置字符                                             |
+|                                                          |                                                              |
+| string.toUpperCase()//普通                               | 转换成大写                                                   |
+| string.toLowerCase()//普通                               | 转换成小写                                                   |
+| string.concat(String)//普通                              | 拼接字符串                                                   |
+| string.replace(目标String, 指定String)//普通             | 将目标字符串替换为指定字符串                                 |
+| string.split(指定String)//普通                           | 以字符串中的指定字符串为分隔界限，返回String数组             |
+| string.compareTo(String)//普通                           | 比较字符串大小。1. 字符串长度相同时，返回字符大小差值。2.长度不同时，返回长度差值。 |
+| string.toCharArray()//普通                               | 返回char数组                                                 |
+| String.format()//静态                                    | 和printf差不多，返回String字符串                             |
+|                                                          |                                                              |
+| string.intern()//普通                                    | 返回常量池中字符串的地址                                     |
+
+
+
+# StringBuffer类
+
+## 特性
+
+是一个final类，不可被继承
+
+value数组不被final修饰，是可变的字符序列，可对字符串中的内容修改。
+
+用value数组指向存放字符数组地址，该字符数组是在堆区的，而不是在常量区。所以可以不断在原来的数组上修改内容（空间不足再扩容），而不像String中每次修改实际上是变换指向的地址。
+
+## 构造器
+
+默认构造的value数组大小是16字节
+
+1. StringBuffer();
+2. StringBuffer(int Capacity);//指定数组大小
+3. StringBuffer(String str)//指定一个字符串，大小 = str.length() + 16
+
+
+
+## String与StringBuffer转换
+
+String------>StringBuffer
+
+~~~java
+//方式1
+StringBuffer str1 = new StringBuffer(String s);//构造器
+//方式2
+StringBuffer str2 = str1.append(String s);//StringBuffer的append(String str)方法
+
+~~~
+
+StringBuffer--------->String
+
+~~~java
+//方式1
+String str1 = new String(StringBuffer s);//构造器
+//方式2
+StringBuffer str = ...;
+String str2 = str.topString();//利用StringBuffer的toString()方法
+~~~
+
+## 常见方法
+
+| 成员                                                      | 作用                     |
+| --------------------------------------------------------- | ------------------------ |
+| stringBuffer.append(String s);//普通                      | 拼接/追加字符串          |
+| stringBuffer.delete(int start, int end);//普通            | 左闭右开山删除           |
+| stringBuffer.replace(int start, int end, String s);//普通 | 左闭右开替换为指定字符串 |
+| stringBuffer.indexOf(String s);//普通                     | 返回索引值，没有就返回-1 |
+| stringBuffer.lastIndexOf(String s)//普通                  | 从右往左                 |
+| stringBuffer.insert(String s)//普通                       | 索引值位置插入字符串     |
+|                                                           |                          |
+|                                                           |                          |
+|                                                           |                          |
+
+# StringBuilder类
+
+## 特性
+
+几乎和StringBuffer一样。StringBuilder被设计为StringBuffer的简易替换。当单线程时好用。
+
+但是不是线程安全的。
+
+## 常用方法
+
+与StringBuffer一致。
+
+主要的方法是使用append和insert
+
+
+
+
+
+# 三种String比较
+
+1. StringBuilder与StringBuffer十分类似，均是可变序列，且方法差不多
+2. String是不可变序列。
+
+
+
+## 使用
+
+1. 字符串序列较少修改，被多个对象引用，使用String
+
+2. 字符串大量修改
+
+    1. 且单线程，使用StringBuilder
+    2. 且多线程，使用StringBuffer
+
+    
+
+
+
+
+
+# Math类
+
+Math 类包含用于执行基本数学运算的方法，如初等指数、对数、平方根和三角函数。
+
+
+
+| 常用成员（都是静态）                          | 作用                                      |
+| --------------------------------------------- | ----------------------------------------- |
+| Math.abs(int/long/float/double)               | 对应类型绝对值                            |
+| Math.pow(double, double)                      | double类型乘方                            |
+| Math.ceil(double)                             | double类型向上取整                        |
+| Math.floor(double)                            | double类型向下取整                        |
+| Math.floor(参数+0.5)                          | 四舍五入                                  |
+| Math.round(float/double)                      | int/longd类型，四舍五入                   |
+| Math.sqrt(double)                             | double类型，开方                          |
+| Math.random()                                 | double类型，0 <= x < 1 之间的一个随机小数 |
+| Math.log10(double)                            | double类型，返回对应log值                 |
+| Math.min(int, int)//也可对比long/float/double | 返回最小值                                |
+| Math.max(int, int)//也可对比long/float/double | 返回最大值                                |
+|                                               |                                           |
+|                                               |                                           |
+|                                               |                                           |
+|                                               |                                           |
+
+
+
+# Arrays类
+
+管理数组的方法
+
+| 常用方法（静态）                 | 作用                                                     |
+| -------------------------------- | -------------------------------------------------------- |
+| Arrays.toString(arr)             | 返回数组的字符串形式，具体看源码                         |
+| Arrays.sort(arr)                 | 升序排序                                                 |
+| Arrays.sort(arr, compare)        | 自定义排序                                               |
+| Arrays.binarySearch(arr,  value) | 返回目标的索引值，没找到返回（-(expected position + 1)） |
+| Arrays.copyOf(arr, length)       | 返回数组                                                 |
+| Arrays.fill(arr, value)          | 进行填充覆盖操作                                         |
+| Arrays.equals(arr1, arr2)        | 返回boolean值，判断是否内容相同                          |
+| Arrays.asList(可变参数)          | 返回List                                                 |
+|                                  |                                                          |
+|                                  |                                                          |
+|                                  |                                                          |
+|                                  |                                                          |
+|                                  |                                                          |
+|                                  |                                                          |
+
+
+
+# System类
+
+| 常用方法                                       | 作用                                                         |
+| ---------------------------------------------- | ------------------------------------------------------------ |
+| exit(0)                                        | 正常结束程序                                                 |
+| System.arraycopy(src, pos, dsrc, dpos, length) | 将src从pos的位置开始的length个值复制给dsrc从dpos位置开始的位置 |
+| System.currentTimeMillis()                     | 返回从1970.1.1 00:00:00到现在的毫秒时间（long）              |
+| System.gc()                                    | 垃圾回收机制                                                 |
+|                                                |                                                              |
+|                                                |                                                              |
+|                                                |                                                              |
+|                                                |                                                              |
+|                                                |                                                              |
+|                                                |                                                              |
+|                                                |                                                              |
+|                                                |                                                              |
+|                                                |                                                              |
+|                                                |                                                              |
+
+
+
+# Big类
+
+- BigInteger类用于保存大整型数据
+- BigDecimal类用于保存高精度数据
+
+两个类都存在乘除加减的成员方法
+
+| 常用成员                                                | 作用                        |
+| ------------------------------------------------------- | --------------------------- |
+| BigInteger/BigDecimal(String s)//构造器                 | 创建对象                    |
+| bigInteger/bigDecimal.add(Big类)                        | 加                          |
+| bigInteger/bigDecimal.subtract(Big类)                   | 减                          |
+| bigInteger/bigDecimal.multiply(Big类)                   | 乘                          |
+|                                                         |                             |
+| bigInteger.divide(BigInteger)                           | 大整数除                    |
+| bigDecimal.divide(BigDecimal)                           | 高精度除,无限循环时抛出异常 |
+| bigDecimal.divide(BigDecimal, BigDecimal.ROUND_CEILING) | 高精度除，以分子精度为准    |
+|                                                         |                             |
+|                                                         |                             |
+|                                                         |                             |
+|                                                         |                             |
+|                                                         |                             |
+|                                                         |                             |
+|                                                         |                             |
+
+# 日期类
+
+## 第一代
+
+![](https://img-blog.csdnimg.cn/0e08fa504c7f40a8aa907edfe43256ae.png)
+
+~~~java
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+public class Date01 {
+    public static void main(String[] args) throws ParseException {
+        //老韩解读
+        //1. 获取当前系统时间
+        //2. 这里的Date 类是在java.util包
+        //3. 默认输出的日期格式是国外的方式, 因此通常需要对格式进行转换
+        Date d1 = new Date(); //获取当前系统时间
+        System.out.println("当前日期=" + d1);
+        Date d2 = new Date(9234567); //通过指定毫秒数得到时间
+        System.out.println("d2=" + d2); //获取某个时间对应的毫秒数
+
+        //老韩解读
+        //1. 创建 SimpleDateFormat对象，可以指定相应的格式
+        //2. 这里的格式使用的字母是规定好，不能乱写
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 hh:mm:ss E");
+        String format = sdf.format(d1); // format:将日期转换成指定格式的字符串
+        System.out.println("当前日期=" + format);
+
+        //老韩解读
+        //1. 可以把一个格式化的String 转成对应的 Date
+        //2. 得到Date 仍然在输出时，还是按照国外的形式，如果希望指定格式输出，需要转换
+        //3. 在把String -> Date ， 使用的 sdf 格式需要和你给的String的格式一样，否则会抛出转换异常
+        String s = "1996年01月01日 10:20:30 星期一";
+        Date parse = sdf.parse(s);
+        System.out.println("parse=" + sdf.format(parse));
+    }
+}
+~~~
+
+|                                                       |                                                      |
+| ----------------------------------------------------- | ---------------------------------------------------- |
+| Date()//构造器                                        | 获取当前系统时间                                     |
+| Date(9234567)//构造器                                 | 通过指定毫秒数得到时间                               |
+|                                                       |                                                      |
+| SimpleDateFormat("yyyy年MM月dd日 hh:mm:ss E")//构造器 | 创建指定格式d的对象                                  |
+| simpleDateFormat.format(Date)                         | 将Date转换成指定格式的String                         |
+| simpleDateFormat.parse(s)                             | 格式化的String （即符合格式的String）转成对应的 Date |
+|                                                       |                                                      |
+|                                                       |                                                      |
+|                                                       |                                                      |
+|                                                       |                                                      |
+|                                                       |                                                      |
+
+
+
+## 第二代
+
+~~~java
+import java.util.Calendar;
+public class Calendar_ {
+    public static void main(String[] args) {
+        //老韩解读
+        //1. Calendar是一个抽象类， 并且构造器是private
+        //2. 可以通过 getInstance() 来获取实例
+        //3. 提供大量的方法和字段提供给程序员
+        //4. Calendar没有提供对应的格式化的类，因此需要程序员自己组合来输出(灵活)
+        //5. 如果我们需要按照 24小时进制来获取时间， Calendar.HOUR ==改成=> Calendar.HOUR_OF_DAY
+        Calendar c = Calendar.getInstance(); //创建日历类对象//比较简单，自由
+        System.out.println("c=" + c);
+        //2.获取日历对象的某个日历字段
+        System.out.println("年：" + c.get(Calendar.YEAR));
+        // 这里为什么要 + 1, 因为Calendar 返回月时候，是按照 0 开始编号
+        System.out.println("月：" + (c.get(Calendar.MONTH) + 1));
+        System.out.println("日：" + c.get(Calendar.DAY_OF_MONTH));
+        System.out.println("小时：" + c.get(Calendar.HOUR));
+        System.out.println("分钟：" + c.get(Calendar.MINUTE));
+        System.out.println("秒：" + c.get(Calendar.SECOND));
+        //Calender 没有专门的格式化方法，所以需要程序员自己来组合显示
+        System.out.println(c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH) + 1) + "-" + c.get(Calendar.DAY_OF_MONTH) +
+                " " + c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND) );
+    }
+}
+~~~
+
+|                                     |                |
+| ----------------------------------- | -------------- |
+| Calendar.getInstance()              | 创建日历类对象 |
+|                                     |                |
+| calendar.get(Calendar.YEAR)         | 年             |
+| calendar.get(Calendar.MONTH) + 1)   | 月             |
+| calendar.get(Calendar.DAY_OF_MONTH) | 日             |
+|                                     |                |
+| calendar.get(Calendar.HOUR)         | 12小时制       |
+| calendar.get(Calendar.HOUR_OF_DAY)  | 24小时制       |
+| calendar.get(Calendar.MINUTE)       | 分             |
+| calendar.get(Calendar.SECOND)       | 秒             |
+|                                     |                |
+|                                     |                |
+|                                     |                |
+|                                     |                |
+
+
+
+## 第三代
+
+![](https://img-blog.csdnimg.cn/ff36463c50f94200a80d1e7e4b436950.png)
+
+~~~java
+package com.hspedu.date_;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collection;
+public class LocalDate_ {
+    public static void main(String[] args) {
+        //第三代日期
+        //老韩解读
+        //1. 使用now() 返回表示当前日期时间的 对象
+        LocalDateTime ldt = LocalDateTime.now(); //LocalDate.now();//LocalTime.now()
+        System.out.println(ldt);
+        
+        //2. 使用DateTimeFormatter 对象来进行格式化
+        // 创建 DateTimeFormatter对象
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String format = dateTimeFormatter.format(ldt);
+        System.out.println("格式化的日期=" + format);
+        System.out.println("年=" + ldt.getYear());
+        System.out.println("月=" + ldt.getMonth());
+        System.out.println("月=" + ldt.getMonthValue());
+        System.out.println("日=" + ldt.getDayOfMonth());
+        System.out.println("时=" + ldt.getHour());
+        System.out.println("分=" + ldt.getMinute());
+        System.out.println("秒=" + ldt.getSecond());
+
+        LocalDate now = LocalDate.now(); //可以获取年月日
+        LocalTime now2 = LocalTime.now();//获取到时分秒
+
+        //提供 plus 和 minus方法可以对当前时间进行加或者减
+        //看看890天后，是什么时候 把 年月日-时分秒
+        LocalDateTime localDateTime = ldt.plusDays(890);
+        System.out.println("890天后=" + dateTimeFormatter.format(localDateTime));
+
+        //看看在 3456分钟前是什么时候，把 年月日-时分秒输出
+        LocalDateTime localDateTime2 = ldt.minusMinutes(3456);
+        System.out.println("3456分钟前 日期=" + dateTimeFormatter.format(localDateTime2));
+    }
+}
+~~~
+
+|                                                    |                                       |
+| -------------------------------------------------- | ------------------------------------- |
+| LocalDateTime.now()                                | 返回对象                              |
+| LocalDate.now()                                    | 返回对象                              |
+| LocalTime.now()                                    | 返回对象                              |
+|                                                    |                                       |
+| DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss") | 返回指定格式DateTimeFormatter对象     |
+|                                                    |                                       |
+| dateTimeFormatter.format(LocalDateTime ldt)        | 将LocalDateTime转换成指定格式的String |
+|                                                    |                                       |
+| local类引用.getYear()                              | 年                                    |
+| local类引用.getMonth()                             | 月(letter)                            |
+| local类引用.getMonthValue()                        | 月(digit)                             |
+| local类引用.getDayOfMonth()                        | 日                                    |
+|                                                    |                                       |
+| local类引用.getHour()                              | 时                                    |
+| local类引用.getMinute()                            | 分                                    |
+| local类引用.getSecond()                            | 秒                                    |
+|                                                    |                                       |
+| local类引用.plusDays(long)                         | 添加日/周/月/年/时/分/秒              |
+| local类引用.minusDays(long)                        | 减少日/周/月/年/时/分/秒              |
+|                                                    |                                       |
+|                                                    |                                       |
+|                                                    |                                       |
+|                                                    |                                       |
+
