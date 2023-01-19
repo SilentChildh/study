@@ -541,7 +541,7 @@ String str3 = str1 + "string2";
 | string.concat(String)//普通                              | 拼接字符串                                                   |
 | string.replace(目标String, 指定String)//普通             | 将目标字符串替换为指定字符串                                 |
 | string.split(指定String)//普通                           | 以字符串中的指定字符串为分隔界限，返回String数组             |
-| string.compareTo(String)//普通                           | 比较字符串大小。1. 字符串长度相同时，返回字符大小差值。2.长度不同时，返回长度差值。 |
+| string.compareTo(String)//普通                           | 比较字符串大小。（按字典序排序）1. 字符串长度相同时，返回字符大小差值。2.长度不同时，返回长度差值。 |
 | string.toCharArray()//普通                               | 返回char数组                                                 |
 | String.format()//静态                                    | 和printf差不多，返回String字符串                             |
 |                                                          |                                                              |
@@ -917,4 +917,486 @@ public class LocalDate_ {
 |                                                    |                                       |
 |                                                    |                                       |
 |                                                    |                                       |
+
+## 时间戳与Date
+
+![](https://img-blog.csdnimg.cn/9184ec46cceb41188fed980c46c5009c.png)
+
+|                          |                         |
+| ------------------------ | ----------------------- |
+| Instant.now()//静态      | 创建对象                |
+|                          |                         |
+| Date.from(Instant)//静态 | 返回对象Instant--->Date |
+| date.toInstant()//普通   | 返回对象Date--->Instant |
+
+
+
+# 集合
+
+## 好处
+
+- 动态保存任意多个对象
+- 提供一系列操作对象的方法
+- 简洁明了
+
+## Collection接口
+
+## 特点
+
+- 其下的实现子类可以存放多个Object对象
+- 有些可存放重复元素，有些不可以
+- Collection没有直接的实现子类，都是通过子接口Link和Set实现的
+
+## 常用方法
+
+| 方法(普通)             | 作用                    |
+| ---------------------- | ----------------------- |
+| 引用.add()             | 添加元素                |
+| 引用.remove(Object)    | 删除元素boolean         |
+| 引用.contains(Object)  | 判断元素是否存在boolean |
+| 引用.size()            | 返回大小int             |
+| 引用.isEmpty()         | 判断是否为空boolean     |
+| 引用.clear()           | 清空void                |
+| 引用.addAll(集合)      | 添加元素                |
+| 引用.containsAll(集合) | 判断多个元素存在        |
+| 引用.removeAll(集合)   | 删除多个元素boolean     |
+|                        |                         |
+|                        |                         |
+|                        |                         |
+|                        |                         |
+|                        |                         |
+
+
+
+## 遍历方式
+
+### 迭代器
+
+认识：
+
+- 在Iterable接口中。
+- Iterator不存放元素，只用于遍历。
+
+常用方法：
+
+~~~java
+Iterator it = 集合引用.iterator();//获取对应迭代器，一开始指向-1的索引位置
+it.hasNext();//返回boolean，判断是否还有下一个元素
+Oject obj = it.next();//迭代器向下移动，并返回下一个元素的对象
+~~~
+
+### 遍历方式1
+
+idea快捷键：itit
+
+~~~java
+while(it.hasNext()) {
+    Object obj = it.next();
+    //.......
+}
+~~~
+
+### 遍历方式2
+
+增强for，底层也是迭代器的运用
+
+idea快捷键：大写i，
+
+~~~java
+for(Object obj : 引用) {
+	//.....
+}
+~~~
+
+### 遍历方式3
+
+~~~java
+for(int i = 0; i < 引用.size(); i++) {
+	//...
+}
+~~~
+
+# List接口
+
+## 认识
+
+1. List集合中，元素可重复
+2. 每个元素具有索引值，可用get(索引)访问。
+3. 常用的实现类有：Vector、ArrayList、LinkedList
+
+## 常用方法
+
+| 方法                                | 作用                                                         |
+| ----------------------------------- | ------------------------------------------------------------ |
+| add(int index, Object ele)          | 在索引位置添加元素boolean                                    |
+| addAll(int index, Collection eles)  | 在索引位置添加元素boolean                                    |
+| get(Object obj)                     | 获取索引位置的对象                                           |
+| indexOf(Object obj)                 | 第一次查找到对象的索引值                                     |
+| lastIndexOf(Object obj)             | 从右往左                                                     |
+| remove(int index)                   | 删除索引位置的元素，并返回对象                               |
+| set(int index, Object obj)          | 替换索引位置的元素                                           |
+| subList(int fromIndex, int toIndex) | 获取左闭右开的子集合（对它返回的子集合操作或对原集合操作，两个集合会互相影响，还容易出异常） |
+|                                     |                                                              |
+|                                     |                                                              |
+|                                     |                                                              |
+|                                     |                                                              |
+|                                     |                                                              |
+|                                     |                                                              |
+
+
+
+## 三种List实现类
+
+1. 可以加入所有元素，包括null
+2. ArrayList是由数组实现的
+3. ArrayList与Vector几乎相同，但ArrayList线程不安全，效率高；Vector用于多线程。
+
+## ArrayList
+
+1. 其中维护了一个 `transient Object[] elementData`数组，transient修饰代表该属性不会被序列化
+2. 构造器：无参时容量为0，第一次添加时，扩容为10；有参时，可指定容量大小。当容量不足时，扩容为原容量的1.5倍。
+3. 不安全，效率高
+
+## Vector
+
+1. 其中维护了一个`protected Objectp[] elementData`数组。
+2. 构造器，无参时容量为10；有参时，可指定容量大小。容量不足时，扩容为原容量的2倍。
+3. 安全，效率低
+
+
+
+## LinkedList
+
+1. 实现了双向链表和双向队列
+2. 线程不安全
+
+
+
+
+
+# Set接口
+
+## 认识
+
+1. 无索引
+2. 能存放任何元素，但无重复元素
+3. 常用实现类：HashSet、TreeSet
+
+## 常用方法
+
+除去索引操作不提供get、set方法，其他与Link差不多
+
+## HashSet
+
+### 底层
+
+首先，HashSet实际上是调用HashMap
+
+数据结构 = 数组 + 链表 + 红黑树
+
+添加操作add(Object obj)的底层机制：
+
+1. 在添加元素时，
+    1. 得到对象哈希值
+    2. 解决碰撞
+    3. 转换为索引值
+2. 判断table表在索引位置是否存在元素
+    1. 没有，则直接添加
+    2. 有，则调用equals()比较.（equals可重写，即自由决定比较标准）
+        1. 相同，则放弃添加
+        2. 不相同，则在该结构上继续按equals()对比，直到最后一个都不相同则添加
+
+数据结构的机制：表头即table数组，每个数组的元素都可以存放HashMap.Node结点类。一开始，每个结点后面由链表连接，后面由红黑树连接。
+
+每添加一个元素后，该HashMap对象中的大小size就自增。当size到达临界值threshold时，就开始令table数组扩容，并且临界值也随之变化。当链表结点超过8个，且size超过64时，结构由链表变为红黑树。
+
+第一次进行添加操作时，size大小为0，table数组默认扩容为16，loadFactor加载因子是0.75，threshold默认是12（loadFactor * 16）。数组扩容是原容量的2倍。
+
+当到达临界值12时，便会扩容为16 * 2 = 32，threshold变为（0.75 * 32） = 24。扩容以此类推。
+
+## LinkedHashSet
+
+HashSet的子类，底层调用LinkedHashMap
+
+数据结构 = 数组 + 双向链表
+
+底层机制和HashSet差不多。可以存放LinkedHashMapEntry类结点，该类继承HashMap.Node类。
+
+
+
+# Map接口
+
+## 认识
+
+1. Map 中的 key 和  value 可以是任何引用类型的数据，会封装到HashMap$Node 对象中
+2. Map 中的 key 不允许重复，原因和HashSet 一样。当有相同的key时 , 就等价于替换.
+3. Map 中的 value 可以重复
+4. Map 的key 可以为 null, value 也可以为null ，注意 key 为null,只能有一个，value 为null ,可以多个
+5. 常用String类作为Map的 key
+6. key 和 value 之间存在单向一对一关系，即通过指定的 key 总能找到对应的 value
+7. 最常用：HashMap、Hashable、Properties
+
+## 储存键值对
+
+一对k-v放在HashMap.Node里；HashMap.Node implements Map.Entry；
+
+在Map中，将键值对HashMap.Node放在Map.Entry接口里，Map.Entry接口又放在HashMap.EntrySet集合里。之所以要这样处理，是因为在Map.Entry接口方便遍历。K getKey(); V getValue();
+
+并且key值还保存在了HashMap.KeySet类中；value值还存在HashMap.Values类中.其实在这两类中，都是指向HashMap.Node
+
+~~~java
+Map map = new HashMap();
+map.put("no1", "韩顺平");//k-v
+map.put("no2", "张无忌");//k-v
+map.put(new Car(), new Person());//k-v
+//System.out.println(map.getClass()); //HashMap
+
+
+Set set = map.entrySet();
+System.out.println(set.getClass());// HashMap$EntrySet
+for (Object obj : set) {
+    //System.out.println(obj.getClass()); //HashMap$Node
+    //为了从 HashMap$Node 取出k-v
+    //先做一个向下转型Object ----> Map.Entry, 而不是HashMap.Node ---> Map.Entry
+    Map.Entry entry = (Map.Entry) obj;
+    //System.out.println(entry.getClass()); //HashMap$Node
+    System.out.println(entry.getKey() + "-" + entry.getValue() );
+}
+
+
+Set set1 = map.keySet();
+System.out.println(set1.getClass());//class java.util.HashMap$KeySet
+Collection values = map.values();
+System.out.println(values.getClass());//class java.util.HashMap$Values
+~~~
+
+## Map接口常用方法
+
+| 方法（普通）   |                  |
+| -------------- | ---------------- |
+| put(K, V)      | 添加键值对       |
+| remove(K)      | 删除键值对       |
+| get(K)         | 返回value        |
+| size()         | 返回大小         |
+| isEmpty()      | 判断为空         |
+| clear()        | 清空             |
+| containsKey(K) | 查找Key，boolean |
+|                |                  |
+|                |                  |
+
+## Map接口遍历方式
+
+
+
+| 涉及方法                 | 作用                               |
+| ------------------------ | ---------------------------------- |
+| map.keySet()             | 返回key的Set集合                   |
+| map.values()             | 返回value的Collection集合          |
+| map.entrySet()           | 返回含有键值对的Set集合            |
+|                          |                                    |
+| 引用集合.iterator()      | 返回对应集合的迭代器               |
+| iterator.hasNext()       | 判断是否有下一个元素               |
+| iterator.next()          | 迭代器移动到下一个元素，并返回元素 |
+|                          |                                    |
+| map.get(K)               | 返回对应key的value                 |
+| 默认toString()           | 打印信息                           |
+|                          |                                    |
+| Map.Entry引用.getKey()   | 返回key                            |
+| Map.Entry引用.getValue() | 返回value                          |
+
+~~~java
+//利用map.keySet()获得key集合，进行遍历。
+//方法主要是迭代器方法和Map接口的get(K)
+        Set keyset = map.keySet();
+        //System.out.println(keyset.getClass());//HashMap$KeySet
+        System.out.println("-----第一种方式-------");
+        for (Object key : keyset) {
+            System.out.println(key + "-" + map.get(key));
+        }
+        System.out.println("----第二种方式--------");
+        Iterator iterator = keyset.iterator();
+        while (iterator.hasNext()) {
+            Object key =  iterator.next();
+            System.out.println(key + "-" + map.get(key));
+        }
+
+//利用map.values()获得value集合，进行遍历
+//方法主要是迭代器方法
+        Collection values = map.values();
+        //System.out.println(keyset.getClass());//HashMap$Values
+        System.out.println("---第一种方式----");
+        for (Object value : values) {
+            System.out.println(value);
+        }
+        System.out.println("---第二种方式----");
+        Iterator iterator2 = values.iterator();
+        while (iterator2.hasNext()) {
+            Object value =  iterator2.next();
+            System.out.println(value);
+        }
+
+//利用map.EntrySet()获得Set集合，进行遍历
+//方法主要是Map.Entry接口的getKey和getValue方法，再加上迭代器
+        Set entrySet = map.entrySet();// EntrySet<Map.Entry<K,V>>
+        System.out.println("----第一种方式----");
+        for (Object entry : entrySet) {
+            //将entry 转成 Map.Entry
+            Map.Entry m = (Map.Entry) entry;
+            System.out.println(m.getKey() + "-" + m.getValue());
+        }
+        System.out.println("----第二种方式----");
+        Iterator iterator3 = entrySet.iterator();
+        while (iterator3.hasNext()) {
+            Object entry =  iterator3.next();
+            //System.out.println(next.getClass());//HashMap$Node -实现-> Map.Entry (getKey,getValue)
+            //向下转型 Map.Entry
+            Map.Entry m = (Map.Entry) entry;
+            System.out.println(m.getKey() + "-" + m.getValue());
+        }
+    }
+}
+~~~
+
+HashMap.Node是访问权限的原因，不可以向下转型为Node，因此只能转为Map.Entry.
+
+Map.Entry其实就只是一个接口，一个工具，一个中转站，用于衔接Node、Object以及k-v内的对象，
+
+
+
+## HashMap
+
+1. 从线程不安全
+2. 使用频率最高的Map接口类
+3. 使用方法与上述一致
+4. 效率比Hashtable高
+
+## Hashtable
+
+1. 键值不许为null
+2. 使用方法与上述一致
+3. 线程安全
+4. 效率比HashMap低
+
+### 底层
+
+底层存在Hashtable$Entry[] table数组，初始化大小为11，扩容机制为 原数组容量 * 2 + 1
+
+临界值threshold初始值为8，每次扩容更新为loadfactor * 数组容量大小
+
+加载因子loadfactor为0.75
+
+## Properties
+
+1. 继承Hashtable
+2. 用法与Hashtable类似
+3. 可用于xxx.properties文件（配置文件）中，将文件数据加载到Properties对象中进行操作。
+
+注意一个方法：`properties.getProperty(Key)`，如果value值得类型不是Stirng，则返回null
+
+
+
+# 集合的选择
+
+![](https://img-blog.csdnimg.cn/839b8e61efc344cbb581d9a043d8f839.png)
+
+
+
+# TreeSet与TreeMap
+
+## TreeSet
+
+1. 使用TreeSet 提供的一个构造器，可以传入一个比较器(匿名内部类)指定排序规则
+    1. 构造器把传入的比较器对象，赋给了 TreeSet的底层的 TreeMap的属性this.comparator
+    2. 如果比较器相等，即返回0。那么这个Key就没有加入，即不会替换key的值
+
+
+
+
+
+# Collections工具
+
+
+
+| 常用方法（静态）                                    | 作用                          |
+| --------------------------------------------------- | ----------------------------- |
+| sort(List)//可加比较器                              | 排序                          |
+| reverse(List)                                       | 翻转                          |
+| shuffle(List)                                       | 随机排序                      |
+| swap(List, int ,int)                                | 交换                          |
+| max(Collection)//可加比较器                         | 集合中最大值                  |
+| min(Collection)//可加比较器                         | 集合中最小值                  |
+| frequency(Collection, Object)                       | 集合中对象出现次数            |
+| copy(List dest, List src)                           | 复制，要保证dest容量>=src容量 |
+| replaceAll(List list, Object oldVal, Object newVal) | 替换List集合中的值            |
+|                                                     |                               |
+|                                                     |                               |
+|                                                     |                               |
+|                                                     |                               |
+|                                                     |                               |
+
+
+
+
+
+# 泛型
+
+## 认识
+
+1.  编译时检查了元素的类型，提高了安全性
+2. 泛型又称参数化类型
+3. 类声明、成员声明时，只需要泛化类型。实例化时指定具体的类型。
+4. 使代码简洁、健壮，在编译时无异常，那么运行时就不会出现ClassCastEception
+
+## 作用
+
+通过标识符，表示属性、方法的返回值、参数的类型
+
+## 语法
+
+`interface 接口 <E, R> {}` 或`class 类名 <E, R> {}`
+
+## 使用
+
+1. <>内可以使任大写字母
+
+2. <>内传入的一定是引用类型
+
+3. 具体实例化时，一般用左边指定泛型类型，而右边会默认以左边的为准。
+
+    即`List<String> list = new ArrayList<>();`
+
+4. 传入的成员可以是泛型类型的子类，从本质来看其实就是多态的使用。如构造器：
+
+    ~~~java
+    //A是B的父类
+    Pig<A> aPig = new Pig<A>(new A());
+    Pig<A> aPig2 = new Pig<A>(new B());
+    ~~~
+
+5. 对于声明了使用泛型的类或接口，当实例化时，若不指定泛型类型，那么默认Object。
+
+    如：`List list = new ArrayList();`，此时默认泛型类型是Object
+
+## 自定义泛型
+
+1. 普通成员可以用泛型，静态成员不可以
+2. 使用泛型的数组，不可以在声明时指定大小
+
+
+
+- 使用自定义泛型时，继承接口或者实现接口时，都要确定泛型类型。否则默认是Object，且会警告：Raw use of parameterized class
+
+    
+
+## 泛型方法
+
+用在普通方法中，如：`public <E, R> void methon (E e, R r) {}`
+
+## 泛型的继承
+
+1. <?>: 支持任意泛型类型
+2. <? extends A>:向下兼容
+3. <? super A>:向上兼容
+
+
 
