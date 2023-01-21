@@ -1400,3 +1400,530 @@ Map.Entry其实就只是一个接口，一个工具，一个中转站，用于�
 
 
 
+
+
+# IO操作
+
+## 简单的文件操作
+
+### 创建文件对象
+
+~~~java
+new File(String pathname);//根据路径
+new File(File parent, String child);//根据父目录文件 + 子路径
+new FIle(String parent, String child);//根据父目录 + 子路径
+~~~
+
+### 创建新文件
+
+创建时，需抛出异常
+
+~~~java
+file.createNewFile();//根据文件对象创建新文件
+~~~
+
+### 获取文件信息
+
+~~~java
+file.getName();//获取文件名称
+file.getAbsolutePath();//获取文件的绝对路径
+file.getParent();//获取文件的父级目录
+file.length();//获取文件的字节大小
+file.exists();//文件是否存在
+file.isFile();//是否是文件
+file.isDirectory();//是否是目录
+~~~
+
+
+
+### 创建目录和文件删除
+
+~~~java
+mkdir();//创建一级目录
+mkdirs();//创建多级目录
+delete();//删除 空目录 或 文件
+~~~
+
+## IO流
+
+## 分类
+
+按数据单位：字节流的二进制文件和字符流的文本文件
+
+按数据流的流向：输入流和输出流
+
+流的角色：节点流和处理流/包装流
+
+![](https://img-blog.csdnimg.cn/01399f5e466147a69952416b3e7cf020.png)
+
+### InputStream
+
+是所有字节输入流的超类
+
+其下的常用子类为：文件输入流`FileInputStream`、缓冲字节输入流`BufferedInputStream`(`FiltereInputStream`的子类)、对象字节流`ObjectInputStream`
+
+
+
+## 节点流与处理流
+
+节点流：可以从特定的数据源读写数据
+
+处理流：也称包装流。是连接在已存在的流之上的流，为程序提供更强大的读写功能。
+
+![](https://img-blog.csdnimg.cn/9a6c1b8cc592494c8f02ba47ac0d9041.png)
+
+## 节点流
+
+### FileInputStream
+
+~~~java
+new FileInputStream(String/File);//创建对象
+
+int readData = 0;
+while((readData = fileInputStream.read()) != -1) {//循环读取，直到文件末尾，然后返回-1
+    //读取的数据在readData中
+}
+//利用read(byte[] b)，提高读取效率
+int readLen = 0;
+byte[] buf = new buf[8];//指定一次读取的字符数量
+while((readLen = fileInputStream.read(buf) != -1) {//返回读取到的字符数量
+    //读取的数据在buf数组中
+    //System.out.print(new String(buf, 0, readLen));//打印读入数据
+    
+}
+
+fileInputStream.close();//关闭文件资源
+
+~~~
+
+
+
+### FileOututStrream
+
+~~~java
+new FileOutputStream(Strint/File, boolean);//创建对象，以及是否追加（true），覆盖（false）
+
+fileOutputStream,write(int);//写入一个字符
+fileOutputStream.write(byte[] b, int, int);//写入字符串，指定写入起始偏移量和长度
+//可通过String中的getByte()成员方法将字符串转换为byte数组。
+fileOutoutStram.write(byte[] b/string.getByte());//写入字符串
+
+close();
+~~~
+
+### FileIn与FileOut的搭配
+
+~~~java
+package com;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class Stream {
+    public static void main(String[] args) {
+        String srcPath = "e:/Git";
+        String destPath = "e:/Git/Github";
+        FileInputStream fileInputStream = null;
+        FileOutputStream fileOutputStream = null;
+
+        try {
+            fileInputStream = new FileInputStream(srcPath);
+            fileOutputStream = new FileOutputStream(destPath);
+
+            byte[] buf = new byte[1024];
+            int readLen = 0;
+            while((readLen = fileInputStream.read(buf)) != -1) {
+                //在循环写入时，一定是三个参数
+                //因为循环读取时，byte数组并不是清空再接收，而是数据覆盖
+                //所以在最后可能会出现数据量小于数组容量的情况，那么实际上接收的是数组的前半段，而后半段是上一轮接收过的数据
+                fileOutputStream.write(buf, 0, readLen);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        finally {
+            try {
+                if(fileInputStream != null) fileInputStream.close();
+                if(fileOutputStream != null) fileOutputStream.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+~~~
+
+### FileReader
+
+~~~java
+new FileReader(String/File);//创建对象
+
+read();//读取字符
+read(char[]);//读取字符串，返回字符长度
+//相关API
+new String(char[]);
+new String(char[], int ,int);//指定起始偏移量和长度
+
+//循环读取的模板与InputStream一致
+//单个字符则用int readData接收
+//字符串则用 char[] buf数组接收。System.out.print(new String(buf, 0, readLen));
+
+close();
+~~~
+
+### FileWriter
+
+~~~java
+new FileWriter(String/File, boolean);//创建对象，是否追加
+
+write(int);//写入单个字符
+write(char[]);
+write(char[], int, int);
+write(String);
+write(String, int ,int);
+//相关API
+string.toCharArray();//字符串转换为字符数组
+
+close();
+~~~
+
+
+
+
+
+## 处理流
+
+### 特点
+
+处理流连接在已存在的流之上的流。
+
+处理流可以消除不同流之间的差异，同时也提供了更方便的方法完成读写功能
+
+处理流使用了修饰器设计模式，不会数据源相连。
+
+### 性能
+
+1. 增加缓冲
+2. 提供一次性输入输出大数据
+
+### BufferedReader
+
+内含Read属性，用于接收其他流。
+
+~~~java
+new BufferedReader(new FileInputStream(String/File));
+
+String line;//按行接收数据,效率高
+
+while((line = bufferedReader.readLine()) != null) {//按行读取，不包括换行符，末尾时返回null
+    System.out.println(line);
+}
+
+bufferedReader.close();//关闭处理流，自动关闭被包装的流
+~~~
+
+### BufferedWriter
+
+~~~java
+new BufferedWriter(new FileOutputStream(String/File, boolean));
+
+write(String);
+newLine();//根据操作系统添加换行符
+
+close();
+~~~
+
+### Buffered读写示例
+
+~~~java
+import java.io.*;
+public class BufferedCopy_ {
+    public static void main(String[] args) {
+        String srcFilePath = "e:\\a.java";
+        String destFilePath = "e:\\a2.java";
+        BufferedReader br = null;
+        BufferedWriter bw = null;
+        String line;
+        try {
+            br = new BufferedReader(new FileReader(srcFilePath));
+            bw = new BufferedWriter(new FileWriter(destFilePath));
+            //说明: readLine 读取一行内容，但是没有换行
+            while ((line = br.readLine()) != null) {
+                //每读取一行，就写入
+                bw.write(line);
+                //插入一个换行
+                bw.newLine();
+            }
+            System.out.println("拷贝完毕...");
+        } 
+        catch (IOException e) {
+            
+        } 
+        finally {
+            //关闭流
+            try {
+                if(br != null) br.close();
+                if(bw != null) bw.close();
+            } 
+            catch (IOException e) {
+                
+            }
+        }
+    }
+}
+~~~
+
+### BufferedInputStream与BufferedOutputStream
+
+内含缓冲数组
+
+~~~java
+package com;
+import java.io.*;
+public class BufferedCopy02 {
+    public static void main(String[] args) {
+        String srcFilePath = "e:\\a.java";
+        String destFilePath = "e:\\a3.java";
+
+        //创建BufferedOutputStream对象BufferedInputStream对象
+        BufferedInputStream bis = null;
+        BufferedOutputStream bos = null;
+        try {
+            //因为 FileInputStream  是 InputStream 子类
+            bis = new BufferedInputStream(new FileInputStream(srcFilePath));
+            bos = new BufferedOutputStream(new FileOutputStream(destFilePath));
+            //循环的读取文件，并写入到 destFilePath
+            byte[] buff = new byte[1024];
+            int readLen = 0;
+            //当返回 -1 时，就表示文件读取完毕
+            while ((readLen = bis.read(buff)) != -1) {
+                bos.write(buff, 0, readLen);
+            }
+            System.out.println("文件拷贝完毕~~~");
+        } 
+        catch (IOException e) {
+        } 
+        finally {
+            //关闭流 , 关闭外层的处理流即可，底层会去关闭节点流
+            try {
+                if(bis != null) bis.close();
+                if(bos != null) bos.close();
+            catch (IOException e) {
+            }
+        }
+    }
+}
+~~~
+
+### 总结
+
+二进制文件的读写操作继承于父类，主要的提升是缓冲的存在。
+
+文本文件的读写操作主要的提升是提供了额外功能：按行读取和添加换行符的操作。
+
+## 对象流
+
+### 序列化与反序列化
+
+序列化就是保存数据时，保存数据的值和类型
+
+反序列化就是恢复数据时，恢复数据的值和类型
+
+
+
+### 序列化机制
+
+通过实现`Serializable`或`Externalizable`接口来成为可序列化。
+
+一般用`Serializable`接口实现，因为这个接口中不需要重写方法，而另一个需要重写方法。
+
+### ObjectOutputStream
+
+提供序列化功能
+
+~~~java
+new ObjectOutputStream(new FileOutputStream(String/File, boolean));
+
+writeInt(100);
+writeBoolean(true);
+writeDouble(3.14);
+writeChar('H');
+writeUTF("hello");
+writeObject(自定义对象);
+
+close();
+~~~
+
+
+
+
+
+### ObjectInputStream
+
+提供反序列化功能
+
+~~~java
+new ObjectInputStream(new FileInputStream(String/File));
+
+readInt();
+readBoolean();
+readDouble();
+readChar();
+readUTF();
+readObject();
+
+close();
+~~~
+
+
+
+### 注意事项
+
+1. 读写的顺序要一致
+2. 序列化和反序列化对象需要实现`Serializable`接口
+3. 序列化类中建议建议添加`SerialVersionUID`，提高版本兼容性
+4. 序列化对象中，默认将所有属性进行序列化。除了`static`和`transient`修饰的成员
+5. 序列化对象中，其中用于接收其他类对象的属性，所接收的类也得实现`Serializable`
+6. 序列化也具备继承性。父类是可序列化，那么子类也可序列化
+
+关于序列化详解的[文章](https://www.cnblogs.com/9dragon/p/10901448.html)
+
+
+
+## 标准输入输出流
+
+~~~java
+
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.Scanner;
+public class InputAndOutput {
+    public static void main(String[] args) {
+        //System 类 的 public final static InputStream in = null;
+        // System.in 编译类型   InputStream
+        // System.in 运行类型   BufferedInputStream
+        // 表示的是标准输入 键盘
+        System.out.println(System.in.getClass());
+
+        //老韩解读
+        //1. public final static PrintStream out = null;
+        //2. 编译类型 PrintStream
+        //3. 运行类型 PrintStream
+        //4. 表示标准输出 显示器
+        System.out.println(System.out.getClass());
+        System.out.println("hello");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("输入内容");
+        String next = scanner.next();
+        System.out.println("next=" + next);
+        
+        
+        
+        //我们可以去修改打印流输出的位置/设备
+        System.setOut(new PrintStream("e:\\f1.txt"));//此时输出到制定文件中
+        System.out.println("hello");
+    }
+}
+~~~
+
+## 打印流
+
+只有输出流，
+
+~~~java
+package com.hspedu.printstream;
+import java.io.IOException;
+import java.io.PrintStream;
+/**
+ * 演示PrintStream （字节打印流/输出流）
+ */
+public class PrintStream_ {
+    public static void main(String[] args) throws IOException {
+        PrintStream out = System.out;
+        //在默认情况下，PrintStream 输出数据的位置是 标准输出，即显示器
+        out.print("john, hello");
+        //因为print底层使用的是write(), 所以我们可以直接调用write进行打印/输出，本质是一样的
+        out.write("韩顺平,你好".getBytes());
+        out.close();
+    }
+}
+~~~
+
+~~~java
+package com.hspedu.transformation;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+/**
+ * 演示 PrintWriter 使用方式
+ */
+public class PrintWriter_ {
+    public static void main(String[] args) throws IOException {
+        //PrintWriter printWriter = new PrintWriter(System.out);
+        PrintWriter printWriter = new PrintWriter(new FileWriter("e:\\f2.txt"));
+        printWriter.print("hello");
+        printWriter.close();//flush + 关闭流, 才会将数据写入到文件..
+    }
+}
+~~~
+
+
+
+## 转换流
+
+~~~java
+BufferedReader bufRead = new InputStreamReader(new FileInputStreasm(String/File), "utf-8");
+String s = bufRead.readLine();
+bufRead,close();
+
+BUfferedWriter bufWrite = new OutputStreamWriter(new FileOutputStream(String/File),"utf-8");
+bufWrite.write("hello");
+bufWrtite.close();
+~~~
+
+## Properties
+
+是专门用于读写配置文件的集合类
+
+配置文件格式：`键=值`。其中键值对之间没有空格，值不需要引号，默认类型String。
+
+~~~java
+new Properties();//创建对象
+
+properties.load(Reader/InputStream);//加载配置文件到properties对象
+
+list(PrintStream/PrintWriter);//指定显示数据的设备位置
+
+getProperty(key);
+seteProperty(key, value);//key存在时，替换value
+
+store(Writer/OutputStream, String);//保存对象中的数据到配置文件中，其中String作为标注放在配置文件开头
+
+~~~
+
+~~~java
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+public class Properties02 {
+    public static void main(String[] args) throws IOException {
+        //使用Properties 类来读取mysql.properties 文件
+        //1. 创建Properties 对象
+        Properties properties = new Properties();
+        //2. 加载指定配置文件
+        properties.load(new FileReader("src\\mysql.properties"));
+        //3. 把k-v显示控制台
+        properties.list(System.out);
+        //4. 根据key 获取对应的值
+        String user = properties.getProperty("user");
+        String pwd = properties.getProperty("pwd");
+        System.out.println("用户名=" + user);
+        System.out.println("密码是=" + pwd);
+    }
+}
+~~~
+
