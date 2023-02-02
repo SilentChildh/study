@@ -1,9 +1,11 @@
-package com.view;
+package com.pojo.vo.user;
+
+import com.view.Transformation;
 
 import java.util.Objects;
 /**
  * 接收转换器包装后的信息。
- * @see Transformation#getUserVO(String, String)
+ * @see Transformation#getUserVO()
  * @author silent_child
  * @version 1.0
  **/
