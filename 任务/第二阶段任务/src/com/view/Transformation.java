@@ -8,8 +8,6 @@ import com.pojo.dto.user.UserDTO;
 import com.pojo.vo.user.UserVO;
 import com.util.LoggerUtil;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.logging.Logger;
 /* 对于view层还不是特别懂。
  *

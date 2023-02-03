@@ -1,6 +1,8 @@
 package com.pojo.dto.user;
 
 
+import com.pojo.dto.BasicDTO;
+
 import java.util.Objects;
 /**
  * 用于传输用户部分可展示信息
@@ -8,8 +10,8 @@ import java.util.Objects;
  * @version 1.0
  **/
 
-public class UserDTO {
-    private Integer id;
+public class UserDTO implements BasicDTO {
+    private Long id;
     private String name;
     private String email;
     private Integer privilege;
@@ -17,11 +19,11 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

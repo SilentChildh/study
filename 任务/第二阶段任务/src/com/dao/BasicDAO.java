@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.pojo.dto.BasicDTO;
 import com.pojo.dto.user.UserDTO;
 import com.pojo.po.BasicPO;
 import com.pojo.po.user.UserPO;
@@ -21,7 +22,7 @@ public interface BasicDAO {
      * @param po 承载过滤条件数据的po实例
      * @return ArrayList<UserDTO> 返回dto实例的集合
      */
-    ArrayList<UserDTO> query(UserPO po);
+    ArrayList<? extends BasicDTO> query(UserPO po);
 
     
     /**
@@ -29,7 +30,7 @@ public interface BasicDAO {
      * @param po 承载过滤条件数据的po实例
      * @return UserDTO 返回单个dto实例
      */
-    UserDTO querySingleLine(BasicPO po);
+    BasicDTO querySingleLine(BasicPO po);
 
     
     /**

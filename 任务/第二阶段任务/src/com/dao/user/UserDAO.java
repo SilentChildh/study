@@ -45,7 +45,7 @@ public class UserDAO implements BasicDAO {
             //循环赋值，然后放到集合中
             while (resultSet.next()) {
                 UserDTO dto = new UserDTO();
-                dto.setId(resultSet.getInt("id"));
+                dto.setId(resultSet.getLong("id"));
                 dto.setName(resultSet.getString("name"));
                 dto.setName(resultSet.getString("email"));
                 dto.setName(resultSet.getString("privilege"));
@@ -71,7 +71,7 @@ public class UserDAO implements BasicDAO {
             //如果找得到，那么就给dto赋值。
             //如果找不到，那么也直接返回一个空的dto
             if (resultSet.next()) {
-                dto.setId(resultSet.getInt("id"));
+                dto.setId(resultSet.getLong("id"));
                 dto.setName(resultSet.getString("name"));
                 dto.setName(resultSet.getString("email"));
                 dto.setName(resultSet.getString("privilege"));

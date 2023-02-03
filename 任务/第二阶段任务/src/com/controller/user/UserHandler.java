@@ -8,9 +8,6 @@ import com.pojo.dto.user.UserDTO;
 import com.service.UserService;
 import com.service.UserServiceImpl;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 /**
  * 用户业务控制器、处理器。<br/>
  * 处理用户相关服务的调度
