@@ -14,7 +14,8 @@ import java.io.FileInputStream;
 public class UserServiceImpl implements UserService{
 
     //在该层下统一完成用户业务，其中会涉及到对数据库的操作，故将局部变量提取为成员变量，提高复用性。
-    private BasicDAO dao;
+    // 获取dao的代理类
+    private BasicDAO dao = new DAOProxyHandler().getDaoProxy(new UserDAO());
 
     private DAOProxyHandler daoProxyHandler;
     @Override
@@ -29,10 +30,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDTO query(Long id, FileInputStream xml) {
-        // 获取dao的代理类 并传入指定的xml文件交其代理使用
-        dao = new DAOProxyHandler().getDaoProxy(new UserDAO(), xml);
         //动态代理
-        dao.query();
+        dao.query(xml);
         return null;
     }
 

@@ -10,7 +10,9 @@ import java.util.ArrayList;
 
 public interface BasicDAO {
     //查询返回集合
-    <T> ArrayList<T> query();
+    //外部依赖xml文件，内含sql语句
+
+    <T> ArrayList<T> query(FileInputStream xml);
 
 
     //查询返回单条记录
