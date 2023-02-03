@@ -30,26 +30,23 @@ public class Transformation {
 
     Logger logger = LoggerUtil.getLoggerUtil();
 
+    private String xmlPath = "E:\\Git\\3122004572-huanghehua\\任务\\第二阶段任务\\src\\sql.xml";
     /**
      * 与客户端交互，并直接与Controller交流。<br/>
      * 通过Controller获得对象数据后，并在此包装成VO。
      * @return {@link UserVO} 返回VO实例
      */
     public UserVO getUserVO() {
+
         UserVO vo = new UserVO();
-        UserHandler controller = new UserHandler();
+        UserHandler controller = new UserHandler(xmlPath);
         ResponseResult<UserDTO> res = null;
 
         //与客户交互...获得信息
         logger.info("获取用户输入信息...");
 
 
-        try {
-            res = controller.query(666666L,
-                    new FileInputStream("E:\\Git\\3122004572-huanghehua\\任务\\第二阶段任务\\src\\dao.xml"));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        res = controller.query(666666L);
 
         /*依赖接口
         //Controller controller = new UserHandler();

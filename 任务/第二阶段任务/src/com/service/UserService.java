@@ -35,7 +35,7 @@ public interface UserService {
      * @param id 在数据库中为主键且自增长的bigInt字段
      * @return 返回DTO实例，内含指定用户可展示的信息
      */
-    UserDTO query(Long id, FileInputStream xml);
+    UserDTO query(Long id);
 
     //Integer update();
 

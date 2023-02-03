@@ -4,6 +4,10 @@ import com.dao.BasicDAO;
 import com.dao.util.JdbcUtils;
 
 import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -17,9 +21,18 @@ public class UserDAO implements BasicDAO {
     //外部依赖xml文件，内含sql语句
     private FileInputStream xml;
 
-    public <T> ArrayList<T> query(FileInputStream xml) {
-        String sql = JdbcUtils.parse(xml, JdbcUtils.SQLType.SELECT);
+    private Connection connection;
+    private PreparedStatement preparedStatement;
+    private ResultSet resultSet;
 
+
+    public <T> ArrayList<T> query() {
+        String sql = JdbcUtils.parse(xml, JdbcUtils.SQLType.SELECT);;
+        try {
+            connection.prepareStatement(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
 
         ArrayList<T> res = new ArrayList<>();

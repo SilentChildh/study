@@ -1,7 +1,5 @@
 package com.pojo.bo.user;
 
-import com.dao.BasicDAO;
-import com.dao.user.UserDAO;
 /**
  * 用于完成用户登录的单位
  * @author silent_child

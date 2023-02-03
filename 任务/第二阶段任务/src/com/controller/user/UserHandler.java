@@ -9,6 +9,7 @@ import com.service.UserService;
 import com.service.UserServiceImpl;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  * 用户业务控制器、处理器。<br/>
@@ -20,7 +21,18 @@ import java.io.FileInputStream;
 public class UserHandler implements Controller {
 
     //在处理器中，处理的是同一类业务，故从局部变量直接提取为成员进行复用。
-    private UserService service = new UserServiceImpl();
+    private String xmlPath;
+    private UserService service;
+
+    public UserHandler(String xmlPath) {
+        this.xmlPath = xmlPath;
+
+        try {
+            service = new UserServiceImpl(new FileInputStream(xmlPath));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * 该处理器拥有：前端提供的UserLoginBO实例、服务端提供的服务接口{@link UserService}。<br/>
@@ -50,8 +62,8 @@ public class UserHandler implements Controller {
      * @param id 前端所获取到的用户id
      * @return ResponseResult<UserDTO> 返回一个内含具体dto实例，以及其他附带信息的“响应对象”
      */
-    public ResponseResult<UserDTO> query(Long id, FileInputStream xml) {
+    public ResponseResult<UserDTO> query(Long id) {
         //UserDTO dto = service.query(id);
-        return ResponseResult.operateData(service.query(id, xml));
+        return ResponseResult.operateData(service.query(id));
     }
 }

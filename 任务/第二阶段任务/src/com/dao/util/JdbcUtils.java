@@ -56,7 +56,7 @@ public class JdbcUtils {
      * @param statement 已开启的Statement 或者是 null
      * @param connection 已开启的Connection 或者是 null
      */
-    public static void Close(ResultSet res, Statement statement, Connection connection) {
+    public static void close(ResultSet res, Statement statement, Connection connection) {
         try {
             if(res != null) {
                 res.close();
