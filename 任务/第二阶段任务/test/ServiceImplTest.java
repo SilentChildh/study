@@ -7,6 +7,10 @@ public class ServiceImplTest {
     @Test
     void queryByIdTest() {
         UserService userService = new UserServiceImpl();
-        Assertions.assertNull(userService.queryById(12L));
+        //未找到id
+        System.out.println(userService.queryById(2L));
+
+        //找到id
+        Assertions.assertNotNull(userService.queryById(1L));
     }
 }

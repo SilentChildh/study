@@ -11,19 +11,15 @@ import com.pojo.dto.user.UserDTO;
 import com.pojo.po.user.UserPO;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class UserServiceImpl implements UserService{
 
-    private FileInputStream xml;
+
     //在该层下统一完成用户业务，其中会涉及到对数据库的操作，故将局部变量提取为成员变量，提高复用性。
     // 获取dao的代理类
-    private BasicDAO dao;
-
-    public UserServiceImpl(FileInputStream xml) {
-        this.xml = xml;
-        dao = new DAOProxyHandler().getDaoProxy(new UserDAO(), xml);
-    }
+    private BasicDAO dao = new DAOProxyHandler().getDaoProxy(new UserDAO());
 
 
     @Override
@@ -44,6 +40,11 @@ public class UserServiceImpl implements UserService{
     public UserDTO queryById(Long id) {
         UserPO po = new UserPO();
         po.setId(id);
+        try {
+            dao.setXml(new FileInputStream(XmlPath.QUERY_BY_ID));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         //动态代理
         return dao.querySingleLine(po);
     }
@@ -57,5 +58,9 @@ public class UserServiceImpl implements UserService{
     @Override
     public void privilege2(UserPrivilege2BO bo) {
 
+    }
+
+    static class XmlPath {
+        private static final String QUERY_BY_ID = "./com/service/dependency/queryById.xml";
     }
 }

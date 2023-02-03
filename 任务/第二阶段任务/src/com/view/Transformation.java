@@ -30,7 +30,6 @@ public class Transformation {
 
     Logger logger = LoggerUtil.getLoggerUtil();
 
-    private String xmlPath = "E:\\Git\\3122004572-huanghehua\\任务\\第二阶段任务\\src\\sql.xml";
     /**
      * 与客户端交互，并直接与Controller交流。<br/>
      * 通过Controller获得对象数据后，并在此包装成VO。
@@ -39,7 +38,7 @@ public class Transformation {
     public UserVO getUserVO() {
 
         UserVO vo = new UserVO();
-        UserHandler controller = new UserHandler(xmlPath);
+        UserHandler controller = new UserHandler();
         ResponseResult<UserDTO> res = null;
 
         //与客户交互...获得信息

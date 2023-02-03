@@ -21,18 +21,8 @@ import java.io.FileNotFoundException;
 public class UserHandler implements Controller {
 
     //在处理器中，处理的是同一类业务，故从局部变量直接提取为成员进行复用。
-    private String xmlPath;
-    private UserService service;
+    private UserService service = new UserServiceImpl();
 
-    public UserHandler(String xmlPath) {
-        this.xmlPath = xmlPath;
-
-        try {
-            service = new UserServiceImpl(new FileInputStream(xmlPath));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     /**
      * 该处理器拥有：前端提供的UserLoginBO实例、服务端提供的服务接口{@link UserService}。<br/>

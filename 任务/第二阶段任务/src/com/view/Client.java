@@ -12,11 +12,10 @@ import java.util.logging.Logger;
  * 模拟客户端
  */
 public class Client {
-    private String xmlPath = "E:\\Git\\3122004572-huanghehua\\任务\\第二阶段任务\\src\\sql.xml";
     public void show() {
         Logger logger = LoggerUtil.getLoggerUtil();//工具类日志
         Transformation trans = new Transformation();//view层的转换器
-        Controller controller = new UserHandler(xmlPath);//controller层的控制器
+        Controller controller = new UserHandler();//controller层的控制器
 
 
         logger.info("客户端请求 用户登录...");

@@ -4,6 +4,7 @@ import com.pojo.dto.user.UserDTO;
 import com.pojo.po.BasicPO;
 import com.pojo.po.user.UserPO;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 /**
  * 仅定义增删查改的dao层接口
@@ -12,6 +13,8 @@ import java.util.ArrayList;
  **/
 
 public interface BasicDAO {
+
+    void setXml(FileInputStream xml);
     
     /**
      * 查询返回多条记录
