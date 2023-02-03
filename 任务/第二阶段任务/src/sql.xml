@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sql>
+    <select>
+        select * from `user`;
+    </select>
+
+    <insert>
+
+    </insert>
+
+    <update>
+
+
+    </update>
+
+
+    <delete>
+
+    </delete>
+</sql>

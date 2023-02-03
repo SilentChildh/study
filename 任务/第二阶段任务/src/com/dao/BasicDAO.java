@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 /**
  * 统一的顶级DAO，是向外提供访问数据库的规范接口。
@@ -8,16 +9,19 @@ import java.util.ArrayList;
  **/
 
 public interface BasicDAO {
-    default <T> ArrayList<T> query() {
+    //查询返回集合
+    <T> ArrayList<T> query();
 
-        ArrayList<T> res = new ArrayList<>();
-        return res;
-    }
 
-    default int update() {
-        int rows = 0;
-        return rows;
-    }
+    //查询返回单条记录
+
+
+    //查询返回单个信息
+
+
+    //DML
+    int update();
+
 
 
 }

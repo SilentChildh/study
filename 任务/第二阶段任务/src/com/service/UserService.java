@@ -6,6 +6,8 @@ import com.pojo.bo.user.UserPrivilege2BO;
 import com.pojo.bo.user.UserRegisterBO;
 import com.pojo.dto.user.UserDTO;
 
+import java.io.FileInputStream;
+
 /**
  * 用户相关业务接口
  * @author silent_child
@@ -33,7 +35,7 @@ public interface UserService {
      * @param id 在数据库中为主键且自增长的bigInt字段
      * @return 返回DTO实例，内含指定用户可展示的信息
      */
-    UserDTO query(Long id);
+    UserDTO query(Long id, FileInputStream xml);
 
     //Integer update();
 

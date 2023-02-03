@@ -8,6 +8,8 @@ import com.pojo.dto.user.UserDTO;
 import com.service.UserService;
 import com.service.UserServiceImpl;
 
+import java.io.FileInputStream;
+
 /**
  * 用户业务控制器、处理器。<br/>
  * 处理用户相关服务的调度
@@ -48,8 +50,8 @@ public class UserHandler implements Controller {
      * @param id 前端所获取到的用户id
      * @return ResponseResult<UserDTO> 返回一个内含具体dto实例，以及其他附带信息的“响应对象”
      */
-    public ResponseResult<UserDTO> query(Long id) {
+    public ResponseResult<UserDTO> query(Long id, FileInputStream xml) {
         //UserDTO dto = service.query(id);
-        return ResponseResult.operateData(service.query(id));
+        return ResponseResult.operateData(service.query(id, xml));
     }
 }

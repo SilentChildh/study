@@ -8,6 +8,8 @@ import com.pojo.dto.user.UserDTO;
 import com.pojo.vo.user.UserVO;
 import com.util.LoggerUtil;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.logging.Logger;
 /* 对于view层还不是特别懂。
  *
@@ -36,11 +38,18 @@ public class Transformation {
     public UserVO getUserVO() {
         UserVO vo = new UserVO();
         UserHandler controller = new UserHandler();
+        ResponseResult<UserDTO> res = null;
 
         //与客户交互...获得信息
         logger.info("获取用户输入信息...");
 
-        ResponseResult<UserDTO> res = controller.query(666666L);
+
+        try {
+            res = controller.query(666666L,
+                    new FileInputStream("E:\\Git\\3122004572-huanghehua\\任务\\第二阶段任务\\src\\dao.xml"));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         /*依赖接口
         //Controller controller = new UserHandler();

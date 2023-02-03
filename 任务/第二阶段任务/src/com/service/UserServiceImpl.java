@@ -1,13 +1,22 @@
 package com.service;
 
+import com.dao.BasicDAO;
+import com.dao.DAOProxyHandler;
+import com.dao.user.UserDAO;
 import com.pojo.bo.user.UserLoginBO;
 import com.pojo.bo.user.UserPrivilege1BO;
 import com.pojo.bo.user.UserPrivilege2BO;
 import com.pojo.bo.user.UserRegisterBO;
 import com.pojo.dto.user.UserDTO;
 
+import java.io.FileInputStream;
+
 public class UserServiceImpl implements UserService{
 
+    //在该层下统一完成用户业务，其中会涉及到对数据库的操作，故将局部变量提取为成员变量，提高复用性。
+    private BasicDAO dao;
+
+    private DAOProxyHandler daoProxyHandler;
     @Override
     public boolean login(UserLoginBO bo) {
         return false;
@@ -19,7 +28,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO query(Long id) {
+    public UserDTO query(Long id, FileInputStream xml) {
+        // 获取dao的代理类 并传入指定的xml文件交其代理使用
+        dao = new DAOProxyHandler().getDaoProxy(new UserDAO(), xml);
+        //动态代理
+        dao.query();
         return null;
     }
 
