@@ -8,8 +8,10 @@ import com.pojo.bo.user.UserPrivilege1BO;
 import com.pojo.bo.user.UserPrivilege2BO;
 import com.pojo.bo.user.UserRegisterBO;
 import com.pojo.dto.user.UserDTO;
+import com.pojo.po.user.UserPO;
 
 import java.io.FileInputStream;
+import java.util.ArrayList;
 
 public class UserServiceImpl implements UserService{
 
@@ -35,11 +37,17 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO query(Long id) {
-        //动态代理
-        dao.query();
-        return null;
+    public ArrayList<UserDTO> query(UserPO po) {
+        return dao.query(po);
     }
+    @Override
+    public UserDTO queryById(Long id) {
+        UserPO po = new UserPO();
+        po.setId(id);
+        //动态代理
+        return dao.querySingleLine(po);
+    }
+
 
     @Override
     public void privilege1(UserPrivilege1BO bo) {

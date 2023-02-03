@@ -2,6 +2,9 @@ package com.dao.user;
 
 import com.dao.BasicDAO;
 import com.dao.util.JdbcUtils;
+import com.pojo.dto.user.UserDTO;
+import com.pojo.po.BasicPO;
+import com.pojo.po.user.UserPO;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -26,21 +29,45 @@ public class UserDAO implements BasicDAO {
     private ResultSet resultSet;
 
 
-    public <T> ArrayList<T> query() {
+
+    @Override
+    public ArrayList<UserDTO> query(UserPO po) {
+        ArrayList<UserDTO> res = new ArrayList<>();
         String sql = JdbcUtils.parse(xml, JdbcUtils.SQLType.SELECT);;
         try {
-            connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(sql);//获取statement进行操作sql语句
+            resultSet = preparedStatement.executeQuery();//得到查询集合
+
+            //循环赋值，然后放到集合中
+            while (resultSet.next()) {
+                UserDTO dto = new UserDTO();
+                dto.setId(resultSet.getInt("id"));
+                dto.setName(resultSet.getString("name"));
+                dto.setName(resultSet.getString("email"));
+                dto.setName(resultSet.getString("privilege"));
+                res.add(dto);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
 
-        ArrayList<T> res = new ArrayList<>();
         return res;
     }
 
+    @Override
+    public UserDTO querySingleLine(BasicPO po) {
+        return null;
+    }
 
-    public int update() {
+    @Override
+    public String querySingleField(BasicPO po) {
+        return null;
+    }
+
+
+    @Override
+    public int update(BasicPO po) {
         int rows = 0;
         return rows;
     }

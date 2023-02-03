@@ -1,6 +1,9 @@
 package com.dao;
 
-import java.io.FileInputStream;
+import com.pojo.dto.user.UserDTO;
+import com.pojo.po.BasicPO;
+import com.pojo.po.user.UserPO;
+
 import java.util.ArrayList;
 /**
  * 仅定义增删查改的dao层接口
@@ -9,20 +12,37 @@ import java.util.ArrayList;
  **/
 
 public interface BasicDAO {
-    //查询返回集合
-    //外部依赖xml文件，内含sql语句
+    
+    /**
+     * 查询返回多条记录
+     * @param po 承载过滤条件数据的po实例
+     * @return ArrayList<UserDTO> 返回dto实例的集合
+     */
+    ArrayList<UserDTO> query(UserPO po);
 
-    <T> ArrayList<T> query();
+    
+    /**
+     * 查询返回单条记录
+     * @param po 承载过滤条件数据的po实例
+     * @return UserDTO 返回单个dto实例
+     */
+    UserDTO querySingleLine(BasicPO po);
 
+    
+    /**
+     * 查询返回单个信息
+     * @param po 承载过滤条件数据的po实例
+     * @return String 返回记录中指定字符信息
+     */
+    String querySingleField(BasicPO po);
+    
 
-    //查询返回单条记录
-
-
-    //查询返回单个信息
-
-
-    //DML
-    int update();
+    /**
+     * 进行增删查改操作，返回受影响行数
+     * @param po 承载过滤条件数据的po实例
+     * @return int 返回记录中受影响的行数
+     */
+    int update(BasicPO po);
 
 
 

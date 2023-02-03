@@ -1,5 +1,8 @@
 package com.pojo.po.user;
 
+import com.dao.BasicDAO;
+import com.pojo.po.BasicPO;
+
 import java.util.Objects;
 /**
  * 持久化用户对象。<br/>
@@ -9,7 +12,8 @@ import java.util.Objects;
  * @version 1.0
  **/
 
-public  class UserPO {
+public  class UserPO implements BasicPO {
+    private Long id;
     private String name;
     private String password;
     private String email;
@@ -30,6 +34,14 @@ public  class UserPO {
         private static final Integer Partial = 1;
         //拥有对普通管理员和普通成员的管理权限
         private static final Integer All = 2;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -68,19 +80,20 @@ public  class UserPO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserPO that = (UserPO) o;
-        return privilege == that.privilege && Objects.equals(name, that.name) && Objects.equals(password, that.password) && Objects.equals(email, that.email);
+        UserPO userPO = (UserPO) o;
+        return Objects.equals(id, userPO.id) && Objects.equals(name, userPO.name) && Objects.equals(password, userPO.password) && Objects.equals(email, userPO.email) && Objects.equals(privilege, userPO.privilege);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, password, email, privilege);
+        return Objects.hash(id, name, password, email, privilege);
     }
 
     @Override
     public String toString() {
         return "UserPO{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", privilege=" + privilege +

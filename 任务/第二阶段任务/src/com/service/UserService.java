@@ -5,8 +5,9 @@ import com.pojo.bo.user.UserPrivilege1BO;
 import com.pojo.bo.user.UserPrivilege2BO;
 import com.pojo.bo.user.UserRegisterBO;
 import com.pojo.dto.user.UserDTO;
+import com.pojo.po.user.UserPO;
 
-import java.io.FileInputStream;
+import java.util.ArrayList;
 
 /**
  * 用户相关业务接口
@@ -31,11 +32,17 @@ public interface UserService {
     boolean register(UserRegisterBO bo);
 
     /**
-     * 查询指定用户信息
+     * 查询指定用户
+     * @param po UserPO实例
+     * @return 返回可传输的UserDTO实例
+     */
+    ArrayList<UserDTO> query(UserPO po);
+    /**
+     * 查询指定id的用户信息
      * @param id 在数据库中为主键且自增长的bigInt字段
      * @return 返回DTO实例，内含指定用户可展示的信息
      */
-    UserDTO query(Long id);
+    UserDTO queryById(Long id);
 
     //Integer update();
 

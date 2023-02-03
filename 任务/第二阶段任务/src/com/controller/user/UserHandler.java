@@ -64,6 +64,6 @@ public class UserHandler implements Controller {
      */
     public ResponseResult<UserDTO> query(Long id) {
         //UserDTO dto = service.query(id);
-        return ResponseResult.operateData(service.query(id));
+        return ResponseResult.operateData(service.queryById(id));
     }
 }

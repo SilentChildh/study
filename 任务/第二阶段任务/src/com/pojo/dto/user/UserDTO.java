@@ -9,6 +9,7 @@ import java.util.Objects;
  **/
 
 public class UserDTO {
+    private Integer id;
     private String name;
     private String email;
     private Integer privilege;
@@ -16,6 +17,13 @@ public class UserDTO {
     public UserDTO() {
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -46,18 +54,19 @@ public class UserDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserDTO userDTO = (UserDTO) o;
-        return privilege == userDTO.privilege && Objects.equals(name, userDTO.name) && Objects.equals(email, userDTO.email);
+        return Objects.equals(id, userDTO.id) && Objects.equals(name, userDTO.name) && Objects.equals(email, userDTO.email) && Objects.equals(privilege, userDTO.privilege);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, privilege);
+        return Objects.hash(id, name, email, privilege);
     }
 
     @Override
     public String toString() {
         return "UserDTO{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", privilege=" + privilege +
                 '}';

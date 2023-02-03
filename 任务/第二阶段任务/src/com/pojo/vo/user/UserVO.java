@@ -11,11 +11,20 @@ import java.util.Objects;
  **/
 
 public class UserVO {
+    private Long id;
     private String name;
     private String email;
     private Integer privilege;
 
     public UserVO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -46,19 +55,20 @@ public class UserVO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserVO vo = (UserVO) o;
-        return privilege == vo.privilege && Objects.equals(name, vo.name) && Objects.equals(email, vo.email);
+        UserVO userVO = (UserVO) o;
+        return Objects.equals(id, userVO.id) && Objects.equals(name, userVO.name) && Objects.equals(email, userVO.email) && Objects.equals(privilege, userVO.privilege);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, privilege);
+        return Objects.hash(id, name, email, privilege);
     }
 
     @Override
     public String toString() {
         return "UserVO{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", privilege=" + privilege +
                 '}';
