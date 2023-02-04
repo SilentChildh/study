@@ -8,6 +8,7 @@ import com.pojo.dto.user.UserDTO;
 import com.pojo.vo.user.UserVO;
 import com.util.LoggerUtil;
 
+import java.util.Scanner;
 import java.util.logging.Logger;
 /* 对于view层还不是特别懂。
  *
@@ -42,8 +43,7 @@ public class Transformation {
         //与客户交互...获得信息
         logger.info("获取用户输入信息...");
 
-
-        res = controller.query(666666L);
+        res = controller.query(1L);
 
         /*依赖接口
         //Controller controller = new UserHandler();
