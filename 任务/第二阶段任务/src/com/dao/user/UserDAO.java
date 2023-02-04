@@ -73,8 +73,8 @@ public class UserDAO implements BasicDAO {
             if (resultSet.next()) {
                 dto.setId(resultSet.getLong("id"));
                 dto.setName(resultSet.getString("name"));
-                dto.setName(resultSet.getString("email"));
-                dto.setName(resultSet.getString("privilege"));
+                dto.setEmail(resultSet.getString("email"));
+                dto.setPrivilege(resultSet.getInt("privilege"));
             }
 
 
