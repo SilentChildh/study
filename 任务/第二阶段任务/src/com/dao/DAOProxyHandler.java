@@ -50,7 +50,7 @@ public class DAOProxyHandler implements InvocationHandler {
 
 
 
-    private void before() throws NoSuchFieldException, IllegalAccessException {
+    private void before() throws IllegalAccessException {
         //反射获取所有字段
          fields = this.dao.getClass().getDeclaredFields();
 
@@ -77,7 +77,7 @@ public class DAOProxyHandler implements InvocationHandler {
         }
 
         //最后关闭资源
-        JdbcUtils.close(resultSet,preparedStatement, connection);
+        JdbcUtils.close(resultSet, preparedStatement, connection);
     }
 
 
