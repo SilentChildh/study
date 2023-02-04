@@ -27,13 +27,13 @@ public  class UserPO implements BasicPO {
      * @author silent_child
      * @version 1.0
      **/
-    static class Level {
+    public static class Level {
         //无任何权限
-        private static final Integer NONE = 0;
+        public static final Integer NONE = 0;
         //拥有对普通用户的管理权限
-        private static final Integer Partial = 1;
+        public static final Integer Partial = 1;
         //拥有对普通管理员和普通成员的管理权限
-        private static final Integer All = 2;
+        public static final Integer All = 2;
     }
 
     public Long getId() {
