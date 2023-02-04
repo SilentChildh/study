@@ -45,7 +45,7 @@ public class SAXParserSQLHandler extends DefaultHandler {
             throws SAXException
     {
         //得到元素值
-        value = new String(ch, start, length);
+        value = (new String(ch, start, length)).trim();
     }
 
 
