@@ -1,4 +1,4 @@
-只要位于java.sql和javax.sql包中，后者主要针对数据源
+主要位于java.sql和javax.sql包中，后者主要针对数据源
 
 # 连接数据库
 
@@ -48,6 +48,19 @@ Connection connection =
 
 //关闭连接
 connect.close();
+~~~
+
+## 方式三
+
+资源绑定
+
+~~~java
+private static ResourceBundle bundle = ResourceBundle.getBundle("resources.jdbc");//源根下的包名.配置文件名
+private static String url = bundle.getString("url");
+private static String user = bundle.getString("user");
+private static String password = bundle.getString("password");
+
+//.....
 ~~~
 
 
@@ -582,7 +595,7 @@ public class DruidUtil {
         Properties p = new Properties();
         try {
             p.load(new FileInputStream("E:\\Git\\3122004572-huanghehua\\任务\\Test\\src\\druid.properties"));
-            DruidDataSourceFactory.createDataSource(p);
+            dataSource = DruidDataSourceFactory.createDataSource(p);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
