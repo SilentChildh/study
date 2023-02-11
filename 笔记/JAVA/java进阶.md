@@ -15,7 +15,7 @@
 - 静态变量是同一个类所有对象共享的
 - 在类信息加载时就已经生成，随着类的消亡而销毁
 
-jdk8以后静态变量存放于堆区中类对象中，
+jdk8以后静态变量存放于堆区类对象中，
 
 通过反射机制加载类对象（当类信息在方法区中加载的时候，它会在堆区中生成一个对应的class对象。）
 
@@ -467,6 +467,8 @@ new 类/接口(参数列表){ 代码 };
 
 # 枚举Enumeration
 
+[详细](https://juejin.cn/post/6844903800155668493)
+
 ## 认识
 
 实际上就是在内部创建一个**<u>常量对象</u>**，外界仅能通过给定方式访问这个对象，且不能修改。
@@ -536,83 +538,6 @@ valueOf(String);//若字符串匹配上常量对象，则返回该对象，否�
 
 
 
-# 注解Annotation
-
-@interface，[注解类](http://www.jasongj.com/2016/01/17/Java1_%E6%B3%A8%E8%A7%A3Annotation/)
-
-## 元注解（了解）
-
-修饰注解的注解，即元注解
-
-@Rentention，指定作用范围（三种）
-
-SOURCE，在编译阶段，即在.java文件中
-
-CLASS，在字节码阶段，即.class文件中
-
-RUNTIME，在运行阶段，即jvm运行时会保留注解，程序可通过反射得到注解。
-
-
-
-@Target，指定使用位置
-
-@Documented，指定注解是否在javadoc中体现，即生成文档时，可看见该注解
-
-@Inherited，子类继承父类注解。如果某个类使用了被@inherited修饰的注解，那么它的子类也将具有该注解
-
-
-
-## 三种注解
-
-@Override，使用该注解必须重写，否则报错
-
-```java
-@Target(ElementType.METHOD)//只用于方法
-```
-
-@Deprecated，使用该注解表示某元素已过时，不推荐使用，但仍可以使用。一般用于版本兼容和过渡。
-
-```java
-@Target(value={CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, MODULE, PARAMETER, TYPE})//可以用于构造器、子段、变量、方法、包、模块、参数、类型
-```
-
-@SuppressWarnings("", "", "")，使用该注解表示抑制某元素报错，可以精准抑制、也可全部抑制，
-
-```java
-@Target({TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE, MODULE})//可用于类型、字段、方法、参数、构造器、变量、模块
-String[] value();//可以传入多抑制信息。
-```
-
-~~~java
-/*
-    可以指定的警告类型有
-    all，抑制所有警告
-    boxing，抑制与封装/拆装作业相关的警告
-    cast，抑制与强制转型作业相关的警告
-    dep-ann，抑制与淘汰注释相关的警告
-    deprecation，抑制与淘汰的相关警告
-    fallthrough，抑制与 switch 陈述式中遗漏 break 相关的警告
-    finally，抑制与未传回 finally 区块相关的警告
-    hiding，抑制与隐藏变数的区域变数相关的警告
-    incomplete-switch，抑制与 switch 陈述式(enum case)中遗漏项目相关的警告
-    javadoc，抑制与 javadoc 相关的警告
-    nls，抑制与非 nls 字串文字相关的警告
-    null，抑制与空值分析相关的警告
-  **rawtypes，抑制与使用 raw 类型相关的警告
-    resource，抑制与使用 Closeable 类型的资源相关的警告
-    restriction，抑制与使用不建议或禁止参照相关的警告
-    serial，抑制与可序列化的类别遗漏 serialVersionUID 栏位相关的警告
-    static-access，抑制与静态存取不正确相关的警告
-    static-method，抑制与可能宣告为 static 的方法相关的警告
-    super，抑制与置换方法相关但不含 super 呼叫的警告
-    synthetic-access，抑制与内部类别的存取未最佳化相关的警告
-    sync-override，抑制因为置换同步方法而遗漏同步化的警告
-  **unchecked，抑制与未检查的作业相关的警告
-    unqualified-field-access，抑制与栏位存取不合格相关的警告
-  **unused，抑制与未用的程式码及停用的程式码相关的警告
-*/
-~~~
-
 
 
 # 异常Exception
@@ -621,7 +546,7 @@ String[] value();//可以传入多抑制信息。
 
 程序执行中发生的不正常情况称为异常。
 
-异常可分为两大类：Error和Exception
+异常可分为两大类：Error和Exception，最终继承于Throwable，大部分放在来源于此。
 
 ### Error
 
@@ -782,6 +707,7 @@ public static void main(String[] args) {
 ~~~java
 //创建语法
 class AgeException extends RuntimeException {
+    public AgeException(){};// 最好写上无参构造器
 	public AgeException(String message) {//构造器
 		super(message);
 	}
@@ -798,3 +724,17 @@ class AgeException extends RuntimeException {
 | ------ | ------------------------ | ---------- | -------------- |
 | throws | 处理异常的方式           | 方法声明中 | 异常类型       |
 | throw  | 手动生成异常对象的关键字 | 方法体中   | 异常对象       |
+
+throw:
+
+- 表示方法内抛出某种异常对象
+- 如果异常对象是非 RuntimeException 则需要在方法申明时加上该异常的抛出 即需要加上 throws 语句 或者 在方法体内 try catch 处理该异常，否则编译报错
+- 执行到 throw 语句则后面的语句块不再执行
+
+
+
+## 异常处理时机
+
+1. dao层不捕获异常，而是抛出异常。交由service处理
+2. 自定义异常可以条件语句、try捕获，但最后一定是向上抛出。
+3. controller层统一捕获异常，实现对model和view之间的调度
