@@ -13,6 +13,11 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
+/**
+ * 数据库连接池
+ * @author silent_child
+ * @version 1.0
+ **/
 
 public class DateBasePool {
     private static Logger logger = MyLogger.getLogger();
@@ -46,6 +51,9 @@ public class DateBasePool {
      */
     private static int presentMaxActive;
 
+    /**
+     * 记录获取资源释放是否超时
+     */
     private static boolean isTimedOut;
 
     static {
@@ -56,6 +64,7 @@ public class DateBasePool {
             throw new RuntimeException(e);
         }
 
+        // 获取初始化资源
         for (int i = 0; i < initialSize; i++) {
             list.add(getProxyConnection());
         }
@@ -82,13 +91,6 @@ public class DateBasePool {
         listener.start();
     }
 
-    public static void main(String[] args) throws InterruptedException, SQLException, ClassNotFoundException {
-        System.out.println(DateBasePool.list.size());
-        for (int i = 0; i < 21; i++) {
-            System.out.println(DateBasePool.getConnection());
-        }
-
-    }
 
     /**
      * 用于从空闲池中获取连接资源
