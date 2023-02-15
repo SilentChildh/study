@@ -10,8 +10,8 @@ import java.lang.reflect.Proxy;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.ResourceBundle;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Logger;
 /**
  * 数据库连接池
@@ -43,9 +43,9 @@ public class DateBasePool {
      */
     private static int maxWait = Integer.parseInt(resourceBundle.getString("maxWait"));
     /**
-     * K为已获取数据库连接的实例，V标记该连接是否被java程序获取
+     * 使用并发队列，线程安全，而且是队列数据结构，更符合池化技术
      */
-    private static LinkedList<Connection> list = new LinkedList<>();
+    private static ConcurrentLinkedQueue<Connection> queue = new ConcurrentLinkedQueue<>();
     /**
      * 目前处于活跃状态的连接资源数量
      */
@@ -66,7 +66,7 @@ public class DateBasePool {
 
         // 获取初始化资源
         for (int i = 0; i < initialSize; i++) {
-            list.add(getProxyConnection());
+            queue.add(getProxyConnection());
         }
 
         logger.info("数据库连接池初始化完毕");
@@ -79,9 +79,9 @@ public class DateBasePool {
             @Override
             public void run() {
                 while (!Thread.interrupted()) {
-                    if (list.size() <= minIdle) {
+                    if (queue.size() <= minIdle) {
                         for (int i = 0; i < 2; i++) {
-                            list.add(getProxyConnection());
+                            queue.add(getProxyConnection());
                         }
                     }
                 }
@@ -113,7 +113,7 @@ public class DateBasePool {
         thread.start();
 
         while (true) {
-            synchronized (list) {
+            synchronized (queue) {
                 /*// 模拟超时
                 try {
                     Thread.sleep(5000);
@@ -133,7 +133,7 @@ public class DateBasePool {
 
                     // 通过检验，则返回一个连接资源，并令活跃连接数量自增
                     presentMaxActive++;
-                    return list.remove();
+                    return queue.poll();
 
                 }
                 // 以下代码也可以继续向上抛出，直到抛给controller层来调度view层展示信息
@@ -202,7 +202,7 @@ public class DateBasePool {
      * @param connection 需要回收的连接资源
      */
     private static Void reclaim(Connection connection) {
-        list.add(getProxyConnection());
+        queue.add(getProxyConnection());
         presentMaxActive--;// 当前活跃数量自减
         return null;
     }
@@ -211,7 +211,7 @@ public class DateBasePool {
      * 用于判断是否低于{@link DateBasePool#minIdle}
      */
     private static Void isMinIdled() {
-        if (list.size() <= minIdle) {
+        if (queue.size() <= minIdle) {
             throw new MinIdledException("已达最小空闲连接数量");
         }
         return null;
