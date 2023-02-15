@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 public class DateBasePool {
-    private static Logger logger = MyLogger.setLogger();
+    private static Logger logger = MyLogger.getLogger();
     private static ResourceBundle resourceBundle = ResourceBundle.getBundle("dataBasePool-config");
     private static String driver = resourceBundle.getString("driver");
     private static String url = resourceBundle.getString("url");
