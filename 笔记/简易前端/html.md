@@ -1,5 +1,3 @@
-[csdn](http://t.csdn.cn/yMYCd)
-
 # html重点
 
 ## 核心

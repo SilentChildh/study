@@ -40,6 +40,8 @@ drop user "用户名" @ "IP";
 -- 修改密码
 set password = password("密码");
 set password for "用户名" @ "IP" = password("密码");# 修改他人密码，需要权限
+ALTER USER 'root'@'localhost' IDENTIFIED WITH 
+mysql_native_password BY '密码';
 
 -- 授权
 grant 权限 on 库.表/视图... to "用户名"@ "IP" [identified by "密码"];# 中括号的内容：若用户存在，则修改密码，否则创建用户
@@ -72,18 +74,22 @@ DROP USER jack -- 默认就是 DROP USER 'jack'@'%'
 DROP USER 'smith'@'192.168.1.%'
 ~~~
 
+## 忘记密码
 
+[csdn](https://blog.csdn.net/m0_56767169/article/details/126385776?ops_request_misc=&request_id=&biz_id=102&utm_term=mysql8.0.32%E5%AF%86%E7%A0%81%E5%BF%98%E8%AE%B0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-126385776.142^v73^insert_down2,201^v4^add_ask,239^v1^insert_chatgpt&spm=1018.2226.3001.4187)
 
 ## 字符集
 
 CHARACTER SET（缩写CHARSET）用于指定数据库采用的字符集，默认是utf8
+
+utf8mb4
 
 
 ## 校对规则
 
 COLLATE用于指定数据库字符集的校对规则
 
-
+utf8mb4-unicode-ci
 
 utf8_bin在校对时区分大小写
 
@@ -131,7 +137,9 @@ char的查询速度大于varchar。
 
 text与varchar差不多。
 
+## BLOB
 
+用于存储二进制数据。**特别说明：序列化对象就可以用这个数据类型接收。**
 
 ## 时间
 
@@ -825,7 +833,7 @@ show keys from t1;
 
 
 
-开启事务：`start transaction`;另类方式：`setautocommit = off`
+开启事务：`start transaction`（这是8以前），8以后采用`begin`。另类方式：`setautocommit = off`
 
 设置保存点： `savepoint save_name`
 
@@ -839,6 +847,9 @@ show keys from t1;
 2. 不开启事务，是默认自动提交的
 3. 事务机制在Innodb引擎下才能使用
 
+## 开启事务的时机
+
+1. 在每一个service方法调用时开启事务。一般一个业务方法对应一个事务
 
 
 # 隔离
@@ -846,7 +857,7 @@ show keys from t1;
 ## 事务特性ACID
 
 1. 原子性：事务应该是一个不可分割的单位。
-2. 一致性：事务应该使数据库从一个一致性的状态转变为另一个一致性的状态，这与原则性是相关的。
+2. 一致性：事务应该使数据库从一个一致性的状态转变为另一个一致性的状态，这与原子性是相关的。
 3. 隔离性：各个事物之间应该互不影响。即在事务提交前，是不影响其他事务的操作的。
 4. 持久性：事务一旦提交，那么数据就被持久化，不可更改.
 
@@ -866,7 +877,7 @@ show keys from t1;
 
 未提交读（Read Uncommitted）：事务可以读取未提交的数据，也称作脏读（Dirty Read）。一般很少使用。
 
-提交读（Read Committed）：是大多数 DBMS （如：Oracle, SQLServer）默认事务隔离。执行两次同意的查询却有不同的结果，也叫不可重复读。
+提交读（Read Committed）：是大多数 DBMS （如：Oracle, SQLServer）默认事务隔离。执行两次同一的查询却有不同的结果，也叫不可重复读。
 
 可重复读（Repeable Read）：是 MySQL 默认事务隔离级别。能确保同一事务多次读取同一数据的结果是一致的。可以解决脏读的问题，但理论上无法解决幻读（Phantom Read）的问题。
 
@@ -1032,3 +1043,12 @@ create view 视图 as (select ...);
 alter table/view ...;
 ~~~
 
+
+
+# 表关系
+
+在数据库中，表之间可以有不同类型的关系，包括一对一、一对多和多对多。
+
+- 一对一（1:1）关系：两个表中的每条记录都只与另一个表中的一条记录相关联。
+- 一对多（1:N）关系：一个表中的每条记录都可以与另一个表中的多条记录相关联。
+- 多对多（N:M）关系：两个表中的每条记录都可以与另一个表中的多条记录相关联。

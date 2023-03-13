@@ -87,6 +87,20 @@ res.getInt/String/Date/...(int column);//返回指定列数（从1开始）的�
 res.getInt/String/Date/...(String coulumnLabel);//返回指定列名的结果。
 ~~~
 
+元信息
+
+列数以1开始
+
+~~~java
+ResultSetMetaData metaData = resultSet.getMetaData();
+int getColumnCount() throws SQLException;// 获取列数量
+boolean isAutoIncrement(int column) throws SQLException;// 是否自增
+String getColumnName(int column) throws SQLException;//  获取列名
+String getColumnLabel(int column) throws SQLException;// 和getColumnName效果一致
+~~~
+
+
+
 
 
 # Statement
